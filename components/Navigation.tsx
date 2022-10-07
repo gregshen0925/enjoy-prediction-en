@@ -12,7 +12,7 @@ const Navigation = (props: Props) => {
         { name: "Stocks", icon: <FaMoneyBillAlt />, dis: "translate-x-16" },
         { name: "Crypto", icon: <FaBtc />, dis: "translate-x-32" },
         { name: "Info", icon: <FaInfo />, dis: "translate-x-48" },
-        { name: "Card", icon: <FaUserFriends />, dis: "translate-x-64" },
+        { name: "Friends", icon: <FaUserFriends />, dis: "translate-x-64" },
     ]
 
     const [active, setActive] = useState(0)
@@ -39,7 +39,7 @@ const Navigation = (props: Props) => {
                             onClick={() => setActive(i)}
                         >
                             <span
-                                className={`text-xl cursor-pointer px-5 duration-800 ${i === active && "-mt-5 text-black"
+                                className={`text-xl cursor-pointer px-[22px] duration-800 ${i === active && "-mt-5 text-black"
                                     }`}
                             >
                                 {menu.icon}

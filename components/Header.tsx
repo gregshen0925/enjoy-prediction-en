@@ -1,6 +1,9 @@
 import React from 'react'
 import { useAccount } from 'wagmi'
-import Logout from './Logout'
+import Logout from './LogoutButton'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import LogoutButton from './LogoutButton';
+
 
 type Props = {}
 
@@ -17,20 +20,40 @@ const Header = (props: Props) => {
                     alt=''
                 />
                 <div>
-                    <h1 className='text-md text-white font-bold'>
+                    <h1 className='text-l text-white font-bold'>
                         NCKU Lottery
                     </h1>
+                    <p>
+                        <ConnectButton.Custom>
+                            {({
+                                account,
+                                openAccountModal,
+                            }) => {
+                                return (
+                                    <button onClick={openAccountModal} type="button" className='text-xs text-emerald-500 truncate'>
+                                        {account?.displayName}
+                                        {account?.displayBalance
+                                            ? ` (${account?.displayBalance})`
+                                            : ''}
+                                    </button>
+                                )
+                            }
+                            }
+                        </ConnectButton.Custom>
+                    </p>
+
+                    {/* 
                     <p className='text-xs text-emerald-500 truncate'>
                         User: {address?.substring(0, 5)}...
                         {address?.substring(address.length, address.length - 5)}
-                    </p>
+                    </p> */}
                 </div>
             </div>
 
 
 
             <div className='flex flex-col ml-auto text-right'>
-                <Logout />
+                <LogoutButton />
             </div>
 
 

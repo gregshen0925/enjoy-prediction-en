@@ -31,7 +31,7 @@ const Login = (props: Props) => {
             <div>
                 <h2 className='text-white font-semibold' >Get started by logging in with your wallet</h2>
             </div>
-            <div className='flex items-center p-8'>
+            <div className='flex items-center p-8 animate-pulse'>
                 <ConnectButton />
             </div>
             <h1 className="text-xl md:text-5xl font-semibold px-10 py-2 text-transparent  bg-clip-text bg-gradient-to-r from-blue-800 to-blue-400">
