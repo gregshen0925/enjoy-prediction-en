@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { FaBtc, FaMoneyBillAlt, FaHome, FaInfo, FaUserFriends } from "react-icons/fa"
-import IconType from 'react-icons'
 
 type Props = {}
 
@@ -43,12 +42,6 @@ const Navigation = (props: Props) => {
                                     }`}
                             >
                                 {menu.icon}
-                                {/* {active === 0 && <FaHome />}
-                                {active === 1 && <FaMoneyBillAlt />}
-                                {active === 2 && <FaBtc />}
-                                {active === 3 && <FaInfo />}
-                                {active === 4 && <FaUserFriends />} */}
-
                             </span>
                             <span
                                 className={` ${active === i

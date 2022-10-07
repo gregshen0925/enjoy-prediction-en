@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   return (
     <div className='bg-black min-h-screen flex flex-col'>
       <Head>
-        <title>NCKU Lottery</title>
+        <title>NCKU EnJoy</title>
       </Head>
 
       <Header />

@@ -1,17 +1,15 @@
 import React from 'react'
-import { useDisconnect } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
 interface Props { }
 
-const LogoutButton = (props: Props) => {
+const ChainButton = (props: Props) => {
     return (
         <ConnectButton.Custom>
             {({
                 account,
                 chain,
-                openAccountModal,
                 openChainModal,
                 openConnectModal,
                 authenticationStatus,
@@ -49,7 +47,7 @@ const LogoutButton = (props: Props) => {
 
                             if (chain.unsupported) {
                                 return (
-                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-2 px-3 rounded font-bold text-xs'>
+                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-2 px-1 rounded font-bold text-xs'>
                                         Wrong network
                                     </button>
                                 );
@@ -61,7 +59,7 @@ const LogoutButton = (props: Props) => {
                                         onClick={openChainModal}
                                         style={{ display: 'flex', alignItems: 'center' }}
                                         type="button"
-                                        className='text-white py-2 px-4 rounded-full font-bold bg-blue-700 text-xs'
+                                        className='text-white py-2 px-2 text-sm rounded-full font-bold bg-gradient-to-r from-cyan-500 to-blue-500'
                                     >
                                         {chain.hasIcon && (
                                             <div
@@ -93,35 +91,6 @@ const LogoutButton = (props: Props) => {
             }}
         </ConnectButton.Custom>
     );
-
-
-
-    // const { disconnect } = useDisconnect()
-
-
-    // return (
-    //     <ConnectButton.Custom>
-    //         {({
-    //             chain,
-    //             openChainModal,
-    //         }) => {
-    //             if (chain?.unsupported) {
-    //                 return (
-    //                     <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-2 px-3 rounded font-bold text-xs'>
-    //                         Wrong network
-    //                     </button>
-    //                 );
-    //             }
-    //             else return (
-    //                 <button
-    //                     onClick={() => disconnect()}
-    //                     className='text-white py-2 px-4 rounded font-bold bg-blue-700'
-    //                 >
-    //                     Logout
-    //                 </button>
-    //             )
-    //         }}
-    //     </ConnectButton.Custom>)
 }
 
-export default LogoutButton
+export default ChainButton

@@ -25,7 +25,7 @@ const Login = (props: Props) => {
                     alt=""
                 />
                 <h1 className='text-5xl font-bold text-white'>
-                    NCKU Lottery
+                    NCKU EnJoy
                 </h1>
             </div>
             <div>

@@ -1,14 +1,11 @@
 import React from 'react'
-import { useAccount } from 'wagmi'
-import Logout from './LogoutButton'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import LogoutButton from './LogoutButton';
+import ChainButton from './ChainButton';
 
 
 type Props = {}
 
 const Header = (props: Props) => {
-    const { address } = useAccount()
 
     return (
         <header className='grid grid-cols-2 md:grid-cols-5 justify-between
@@ -20,8 +17,8 @@ const Header = (props: Props) => {
                     alt=''
                 />
                 <div>
-                    <h1 className='text-l text-white font-bold'>
-                        NCKU Lottery
+                    <h1 className='text-xl text-white font-bold truncate'>
+                        NCKU EnJoy
                     </h1>
                     <p>
                         <ConnectButton.Custom>
@@ -41,19 +38,13 @@ const Header = (props: Props) => {
                             }
                         </ConnectButton.Custom>
                     </p>
-
-                    {/* 
-                    <p className='text-xs text-emerald-500 truncate'>
-                        User: {address?.substring(0, 5)}...
-                        {address?.substring(address.length, address.length - 5)}
-                    </p> */}
                 </div>
             </div>
 
 
 
             <div className='flex flex-col ml-auto text-right'>
-                <LogoutButton />
+                <ChainButton />
             </div>
 
 
