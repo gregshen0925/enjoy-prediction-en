@@ -1,6 +1,6 @@
 import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import ChainButton from './ChainButton';
+import ChainButton from '../ChainButton/index';
 
 
 type Props = {}

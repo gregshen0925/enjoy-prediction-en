@@ -17,7 +17,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'NCKU Lottery',
+  appName: 'NCKU EnJoy',
   chains
 });
 
