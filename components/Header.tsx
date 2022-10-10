@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAccount } from 'wagmi'
-import Logout from './Logout'
+import ChainButton from './ChainButton/index';
 
 type Props = {}
 
@@ -30,7 +30,7 @@ const Header = (props: Props) => {
 
 
             <div className='flex flex-col ml-auto text-right'>
-                <Logout />
+                <ChainButton />
             </div>
 
 
