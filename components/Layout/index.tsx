@@ -12,7 +12,7 @@ const Layout: FC<Props> = ({ children }) => {
     return (
         <Suspense fallback={<div className="flex h-screen w-full justify-center items-center">
         </div>}>
-            <div className='bg-black min-h-screen flex flex-col'>
+            <div className='bg-black min-h-screen flex flex-col items-center'>
                 <Header />
                 <div className='absolute inset-x-0 bottom-0 items-center justify-center flex'>
                     <NavigationTab />
