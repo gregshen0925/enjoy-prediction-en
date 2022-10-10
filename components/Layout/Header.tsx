@@ -8,7 +8,7 @@ type Props = {}
 const Header = (props: Props) => {
 
     return (
-        <header className='grid grid-cols-2 md:grid-cols-5 justify-between
+        <header className='grid grid-cols-2  justify-between
         items-center p-5'>
             <div className='flex items-center space-x-2'>
                 <img
