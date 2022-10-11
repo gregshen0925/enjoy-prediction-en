@@ -39,8 +39,9 @@ const ChainButton = (props: Props) => {
                         {(() => {
                             if (!connected) {
                                 return (
-                                    <button onClick={openConnectModal} type="button">
-                                        Connect Wallet
+                                    <button onClick={openConnectModal} type="button" className='text-white 
+                                    bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full py-2 px-4 font-semibold'>
+                                        Connect
                                     </button>
                                 );
                             }
