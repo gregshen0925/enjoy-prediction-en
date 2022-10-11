@@ -21,13 +21,16 @@ const Home: NextPage<Props> = (props: Props) => {
     //     setActiveNum(num)
     // }
 
-    if (!address) return <Login />
+    // if (!address) return <Login />
 
     return (
         <div>
             <Head>
                 <title>NCKU EnJoy</title>
             </Head>
+            <div className='text-white'>
+                hi
+            </div>
         </div>
     )
 }

@@ -16,37 +16,36 @@ const Menus = [
     { name: "Friends", icon: <FaUserFriends />, dis: "translate-x-64", router: '/friends' },
 ]
 
+// enum Tab {
+//     Home,
+//     Stocks,
+//     Crypto,
+//     Info,
+//     Friends
+// }
 
-enum Tab {
-    Home,
-    Stocks,
-    Crypto,
-    Info,
-    Friends
-}
-
-const currentTab = (path: string): Tab => {
-    switch (path) {
-        case '/': return Tab.Home
-        case '/stocks': return Tab.Stocks
-        case '/crypto': return Tab.Crypto
-        case '/info': return Tab.Info
-        case '/friends': return Tab.Friends
-        default:
-            return Tab.Home
-    }
-}
+// const currentTab = (path: string): Tab => {
+//     switch (path) {
+//         case '/': return Tab.Home
+//         case '/stocks': return Tab.Stocks
+//         case '/crypto': return Tab.Crypto
+//         case '/info': return Tab.Info
+//         case '/friends': return Tab.Friends
+//         default:
+//             return Tab.Home
+//     }
+// }
 
 
 
 
 const NavigationTab = (props: Props) => {
-    const { pathname } = useRouter()
+    // const { pathname } = useRouter()
     const [isActive, setActive] = useState(0)
-    const [selectedTab, setSelectedTab] = useState<Tab>(currentTab(pathname))
-    useEffect(() => {
-        setSelectedTab((currentTab(pathname)))
-    }, [pathname])
+    // const [selectedTab, setSelectedTab] = useState<Tab>(currentTab(pathname))
+    // useEffect(() => {
+    //     setSelectedTab((currentTab(pathname)))
+    // }, [pathname])
 
     return (
         <div className="bg-gray-200 max-h-[4.4rem] px-6 rounded-t-xl">
