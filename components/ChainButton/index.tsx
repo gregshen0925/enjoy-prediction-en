@@ -46,7 +46,7 @@ const ChainButton = (props: Props) => {
                                 );
                             }
 
-                            if (chain.unsupported) {
+                            if (chain?.unsupported) {
                                 return (
                                     <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-2 px-1 rounded font-bold text-xs'>
                                         Wrong network
@@ -62,7 +62,7 @@ const ChainButton = (props: Props) => {
                                         type="button"
                                         className='text-white py-2 px-2 text-sm rounded-full font-bold bg-gradient-to-r from-cyan-500 to-blue-500'
                                     >
-                                        {chain.hasIcon && (
+                                        {chain?.hasIcon && (
                                             <div
                                                 style={{
                                                     background: chain.iconBackground,
@@ -82,7 +82,7 @@ const ChainButton = (props: Props) => {
                                                 )}
                                             </div>
                                         )}
-                                        {chain.name}
+                                        {chain?.name}
                                     </button>
                                 </div>
                             );

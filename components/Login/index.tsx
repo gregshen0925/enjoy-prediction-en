@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Cursor, useTypewriter } from "react-simple-typewriter"
 

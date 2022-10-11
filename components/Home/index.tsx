@@ -1,9 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { useAccount } from 'wagmi'
-import { Cursor, useTypewriter } from "react-simple-typewriter"
-
-
+// import { useAccount } from 'wagmi'
+// import { Cursor, useTypewriter } from "react-simple-typewriter"
 
 
 
