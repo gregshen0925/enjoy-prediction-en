@@ -34,7 +34,7 @@ interface Props {
 const Layout: FC<Props> = ({ children }) => {
     return (
         <div>
-            <Toaster position="top-right" toastOptions={toastOptions} />
+            <Toaster position="bottom-right" toastOptions={toastOptions} />
             <Suspense fallback={<div className="flex h-screen w-full justify-center items-center">
             </div>}>
                 <div className='bg-black min-h-screen flex flex-col items-center'>
