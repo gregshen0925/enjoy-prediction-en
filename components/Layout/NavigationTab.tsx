@@ -11,7 +11,7 @@ const Menus = [
     { name: "Home", icon: <FaHome />, dis: "translate-x-0", router: '/' },
     { name: "Stocks", icon: <FaMoneyBillAlt />, dis: "translate-x-16", router: '/stocks' },
     { name: "Crypto", icon: <FaBtc />, dis: "translate-x-32", router: '/crypto' },
-    { name: "Info", icon: <FaInfo />, dis: "translate-x-48", router: '/info' },
+    { name: "Rank", icon: <FaInfo />, dis: "translate-x-48", router: '/rank' },
     { name: "Friends", icon: <FaUserFriends />, dis: "translate-x-64", router: '/friends' },
 ]
 
