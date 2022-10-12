@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { FC, ReactNode, Suspense } from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const toastOptions = {
     style: {

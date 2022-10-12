@@ -7,7 +7,7 @@ type Props = {}
 const Friends: NextPage = (props: Props) => {
     return (
         <div>
-
+            <div className='text-white'>Coming Soon</div>
         </div>
     )
 }
