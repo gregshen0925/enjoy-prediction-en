@@ -5,10 +5,11 @@ import { useAccount } from 'wagmi'
 
 
 interface Props {
-
+    isStock?: Boolean
+    isCrypto?: Boolean
 }
 
-const Precidtion = (props: Props) => {
+const Precidtion = ({ isStock, isCrypto }: Props) => {
     const [bet, setBet] = useState(NaN);
     const { address } = useAccount()
 
@@ -21,6 +22,10 @@ const Precidtion = (props: Props) => {
             toast.error('請先連接錢包')
             return
         }
+        if (!bet) {
+            toast.error('請輸入數字')
+            return
+        }
         if (bet > 5) {
             toast.error('最高5美元')
             setBet(NaN)
@@ -31,9 +36,11 @@ const Precidtion = (props: Props) => {
             setBet(NaN)
             return
         }
-        if (!bet) {
-            toast.error('請輸入數字')
-            return
+        if (isStock) {
+            // interact with stock pool
+        }
+        if (isCrypto) {
+            // interact with crypto pool
         }
         console.log(bet)
     };
@@ -43,6 +50,10 @@ const Precidtion = (props: Props) => {
             toast.error('請先連接錢包')
             return
         }
+        if (!bet) {
+            toast.error('請輸入數字')
+            return
+        }
         if (bet > 5) {
             toast.error('最高5美元')
             setBet(NaN)
@@ -53,9 +64,11 @@ const Precidtion = (props: Props) => {
             setBet(NaN)
             return
         }
-        if (!bet) {
-            toast.error('請輸入數字')
-            return
+        if (isStock) {
+            // interact with stock pool
+        }
+        if (isCrypto) {
+            // interact with crypto pool
         }
         console.log(bet)
     };
@@ -70,6 +83,7 @@ const Precidtion = (props: Props) => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
             <div className='flex justify-center items-center py-3 truncate'>
+                <div>&nbsp;&nbsp;</div>
                 <button
                     type="button"
                     onClick={handleMoon}

@@ -55,13 +55,14 @@ const Header = (props: Props) => {
                         </ConnectButton.Custom>
                     </p>
                 </div>
+                <div className='flex flex-col ml-auto px-4'>
+                    <ChainButton />
+                </div>
             </div>
 
 
 
-            <div className='flex flex-col ml-auto text-right'>
-                <ChainButton />
-            </div>
+
 
 
         </header>

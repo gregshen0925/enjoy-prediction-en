@@ -20,9 +20,11 @@ const Stocks: NextPage = (props: Props) => {
             <div className='absolute top-[5px]'>
                 <SymbolOverviewNoSSR symbol='NDX' />
             </div>
-            <div className='absolute top-[320px]'>
-                <Precidtion />
+            {
 
+            }
+            <div className='absolute top-[320px]'>
+                <Precidtion isStock={true} />
             </div>
 
 

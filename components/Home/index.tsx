@@ -13,19 +13,19 @@ const Home: NextPage<Props> = (props: Props) => {
     // const { address } = useAccount()
     // if (!address) return <Login />
 
-    const [text, count] = useTypewriter({
-        words: ['成大區塊鏈與金融科技社，一個讓學生們可以交流、學習的社團，11/23將在成大舉辦大型說明會說明詳細規劃'],
-        delaySpeed: 200,
-    })
+    // const [text, count] = useTypewriter({
+    //     words: ['這是一個讓學生們可以交流、學習的社團，11/23將在成大舉辦大型說明會說明詳細規劃'],
+    //     delaySpeed: 200,
+    // })
 
     return (
         <div className="text-center">
             <Head>
                 <title>NCKU EnJoy</title>
             </Head>
-            <div className="flex text-white justify-center text-3xl">TL;DR</div>
+            <div className="flex text-white justify-center text-3xl">成大區塊鏈與金融科技社</div>
             <div className="text-[#4fe0d9] font-semibold py-2 px-10">
-                <span>{text}</span>
+                <span>這是一個讓學生們可以學習、交流的成大社團，11/23將在校內舉辦大型說明會說明詳細規劃</span>
                 <Cursor cursorColor="#4fe0d9" />
             </div>
         </div>

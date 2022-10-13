@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { FaBtc, FaMoneyBillAlt, FaHome, FaInfo, FaUserFriends } from "react-icons/fa"
+
 
 type Props = {
     // activeNum: number
@@ -15,32 +17,28 @@ const Menus = [
     { name: "Friends", icon: <FaUserFriends />, dis: "translate-x-64", router: '/friends' },
 ]
 
-// enum Tab {
-//     Home,
-//     Stocks,
-//     Crypto,
-//     Info,
-//     Friends
-// }
-
-// const currentTab = (path: string): Tab => {
-//     switch (path) {
-//         case '/': return Tab.Home
-//         case '/stocks': return Tab.Stocks
-//         case '/crypto': return Tab.Crypto
-//         case '/info': return Tab.Info
-//         case '/friends': return Tab.Friends
-//         default:
-//             return Tab.Home
-//     }
-// }
-
-
-
+enum Tab {
+    Home,
+    Stocks,
+    Crypto,
+    Info,
+    Friends
+}
+const currentTab = (path: string): Tab => {
+    switch (path) {
+        case '/': return 0
+        case '/stocks': return 1
+        case '/crypto': return 2
+        case '/info': return 3
+        case '/friends': return 4
+        default:
+            return 0
+    }
+}
 
 const NavigationTab = (props: Props) => {
-    // const { pathname } = useRouter()
-    const [isActive, setActive] = useState(0)
+    const { pathname } = useRouter()
+    const [isActive, setActive] = useState<Tab>(currentTab(pathname))
     // const [selectedTab, setSelectedTab] = useState<Tab>(currentTab(pathname))
     // useEffect(() => {
     //     setSelectedTab((currentTab(pathname)))

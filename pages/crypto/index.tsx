@@ -22,7 +22,7 @@ const Crypto: NextPage = (props: Props) => {
                 <SymbolOverviewNoSSR symbol='BTCUSD' />
             </div>
             <div className='absolute top-[320px] items-center justify-center'>
-                <Precidtion />
+                <Precidtion isCrypto={true} />
             </div>
 
 

@@ -40,7 +40,7 @@ const ChainButton = (props: Props) => {
                             if (!connected) {
                                 return (
                                     <button onClick={openConnectModal} type="button" className='text-white 
-                                    bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full py-2 px-4 font-semibold'>
+                                    bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full py-2 px-3 font-semibold'>
                                         Connect
                                     </button>
                                 );
@@ -48,8 +48,8 @@ const ChainButton = (props: Props) => {
 
                             if (chain?.unsupported) {
                                 return (
-                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-2 px-1 rounded font-bold text-xs'>
-                                        Wrong network
+                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-1 px-1 rounded font-bold text-xs'>
+                                        Wrong Network
                                     </button>
                                 );
                             }
