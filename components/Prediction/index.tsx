@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAccount } from 'wagmi'
+import Percentage from '../Percentage'
 
 
 
 interface Props {
     isStock?: Boolean
     isCrypto?: Boolean
+    Predicted?: Boolean
 }
 
-const Precidtion = ({ isStock, isCrypto }: Props) => {
+const Precidtion = ({ isStock, isCrypto, Predicted }: Props) => {
     const [bet, setBet] = useState(NaN);
     const { address } = useAccount()
 
@@ -73,31 +75,46 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         console.log(bet)
     };
 
-    return (
-        <div>
-            <input
-                type="number"
-                onChange={handleChange}
-                value={bet}
-                placeholder='投入USDT數量(1~5)'
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-            <div className='flex justify-center items-center py-3 truncate'>
-                <div>&nbsp;&nbsp;</div>
-                <button
-                    type="button"
-                    onClick={handleMoon}
-                    className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                >明天會漲</button>
-                <button
-                    type="button"
-                    onClick={handleDust}
-                    className="text-black bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                >明天會跌</button>
+
+    if (!Predicted) {
+        return (
+            <div>
+                <input
+                    type="number"
+                    onChange={handleChange}
+                    value={bet}
+                    placeholder='投入USDT數量(1~5)'
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <div className='flex justify-center items-center py-3 truncate'>
+                    <div>&nbsp;&nbsp;</div>
+                    <button
+                        type="button"
+                        onClick={handleMoon}
+                        className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    >明天會漲</button>
+                    <button
+                        type="button"
+                        onClick={handleDust}
+                        className="text-black bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    >明天會跌</button>
+                </div>
+                {/* <h2 className='text-white font-bold'>目前池子總數: { }</h2> */}
             </div>
-            {/* <h2 className='text-white font-bold'>目前池子總數: { }</h2> */}
-        </div>
-    )
+        )
+    }
+    else {
+        if (isCrypto) {
+            return (
+                <Percentage isCrypto={isCrypto} />
+            )
+        }
+        else {
+            return (
+                <Percentage isStock={isStock} />
+            )
+        }
+    }
 }
 
 export default Precidtion

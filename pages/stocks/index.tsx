@@ -11,6 +11,9 @@ const SymbolOverviewNoSSR = dynamic(() => import("../../components/Chart"), { ss
 
 
 const Stocks: NextPage = (props: Props) => {
+    // query if user already predicted stocks today
+    // const predicted =
+
     return (
         <div className='flex flex-col relative text-center 
         md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'>
@@ -20,11 +23,12 @@ const Stocks: NextPage = (props: Props) => {
             <div className='absolute top-[5px]'>
                 <SymbolOverviewNoSSR symbol='NDX' />
             </div>
-            {
 
-            }
             <div className='absolute top-[320px]'>
-                <Precidtion isStock={true} />
+                <Precidtion
+                    isStock={true}
+                // Predicted={predicted}
+                />
             </div>
 
 

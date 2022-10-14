@@ -29,7 +29,7 @@ const currentTab = (path: string): Tab => {
         case '/': return 0
         case '/stocks': return 1
         case '/crypto': return 2
-        case '/info': return 3
+        case '/rank': return 3
         case '/friends': return 4
         default:
             return 0
