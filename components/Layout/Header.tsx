@@ -43,7 +43,7 @@ const Header = (props: Props) => {
                                             : <motion.div
                                                 whileHover={{ scale: 1, rotate: 360 }}
                                                 whileTap={{
-                                                    scale: 0.8,
+                                                    scale: 0.9,
                                                     rotate: 360,
                                                     borderRadius: "100%"
                                                 }}

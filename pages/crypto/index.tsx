@@ -25,7 +25,7 @@ const Crypto: NextPage = (props: Props) => {
             <div className='absolute top-[320px] items-center justify-center'>
                 <Precidtion
                     isCrypto={true}
-                // Predicted={predicted}
+                    Predicted={true}
                 />
             </div>
         </div>

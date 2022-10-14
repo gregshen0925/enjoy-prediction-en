@@ -106,7 +106,9 @@ const Precidtion = ({ isStock, isCrypto, Predicted }: Props) => {
     else {
         if (isCrypto) {
             return (
-                <Percentage isCrypto={isCrypto} />
+                <div className='py-3'>
+                    <Percentage isCrypto={isCrypto} />
+                </div>
             )
         }
         else {

@@ -8,23 +8,33 @@ type Props = {
 const Percentage = ({ isCrypto, isStock }: Props) => {
 
     if (isCrypto) {
-        // const totalCryptoPrediction = getTotalPredictMoonAmount+getTotalPredictDustAmount
+        // const totalCryptoAmount = getTotalPredictMoonAmount+getTotalPredictDustAmount
         // const percentage = ((getTotalPredictMoonAmount/totalCryptoPrediction)*100).toFixed(2)
-        const percentage = 30
+        const totalCryptoAmount = 1000
+        const percentage = 30.27
+        const moonOrDust = "Moon"
+        const bet = 3
         return (
-            <div className='grid grid-3'>
-                {/* <div className='text-white'>
-                    {percentage}%
-                </div> */}
-                <div className="w-[200px] bg-red-200 rounded-full dark:bg-red-700">
-                    <div className="bg-green-600 text-xs font-medium text-green-100 text-center p-0.5 leading-none rounded-full"
-                        style={{ width: `${percentage}%` }}
-                    >{percentage}%</div>
+            <div>
+                <div className='text-white font-semibold' >
+                    您預測{" "}{bet}{" "}USDT明天會{moonOrDust}
                 </div>
-                <div className='text-white'>
-                    {100 - percentage}%
+                <div className='flex-cols-3 flex items-center justify-center py-2'>
+                    <div className='text-white font-semibold px-2'>
+                        {percentage}%
+                    </div>
+                    <div>
+                        <div className="w-[100px] bg-red-600 h-5 rounded">
+                            <div className="bg-green-600 h-5 rounded-l" style={{ width: `${percentage}%` }}></div>
+                        </div>
+                    </div>
+                    <div className='text-white font-semibold px-2'>
+                        {100 - percentage}%
+                    </div>
                 </div>
-
+                <div className='text-white font-semibold'>
+                    當前總金額為{" "}{totalCryptoAmount}{" "}USDT
+                </div>
             </div>
         )
     }
@@ -33,11 +43,17 @@ const Percentage = ({ isCrypto, isStock }: Props) => {
         // const percentage = ((getPredictMoonAmount/totalCryptoPrediction)*100).toFixed(2)
         const percentage = 1
         return (
-            <div>
-                <div className="w-[200px] bg-red-200 rounded-full dark:bg-red-700">
-                    <div className="bg-green-600 text-xs font-medium text-green-100 text-center p-0.5 leading-none rounded-full"
-                        style={{ width: `${percentage}%` }}
-                    > {percentage}%</div>
+            <div className='flex-cols-3 flex items-center justify-center'>
+                <div className='text-white text px-2'>
+                    {percentage}%
+                </div>
+                <div>
+                    <div className="w-[100px] bg-red-600 h-5 mb-6">
+                        <div className="bg-green-600 h-5" style={{ width: `${100 - percentage}%` }}></div>
+                    </div>
+                </div>
+                <div className='text-white text px-2'>
+                    {100 - percentage}%
                 </div>
             </div>
         )
