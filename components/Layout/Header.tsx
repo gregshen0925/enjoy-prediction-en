@@ -1,30 +1,30 @@
 import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import ChainButton from '../ChainButton/index';
-import { Cursor, useTypewriter } from "react-simple-typewriter"
+import { motion } from 'framer-motion'
+// import { useTypewriter } from "react-simple-typewriter"
 
 
 type Props = {}
 
 const Header = (props: Props) => {
-    const [text, count] = useTypewriter({
-        words: [
-            `Created By InJoy Labs`
-        ],
-        delaySpeed: 2000,
-    })
+    // const [text, count] = useTypewriter({
+    //     words: [
+    //         `Created By InJoy Labs`
+    //     ],
+    //     delaySpeed: 2000,
+    // })
 
     return (
-        <header className='grid grid-cols-2 justify-between
-        items-center p-5'>
+        <header className='grid grid-cols-2 md:grid-cols-5 justify-between p-5'>
             <div className='flex items-center space-x-2'>
                 <img
                     className='rounded-full h-20 w-20'
                     src='https://i.imgur.com/vHZqwZF.png'
                     alt=''
                 />
-                <div>
-                    <h1 className='text-xl text-white font-bold truncate'>
+                <div className=' md:flex md:col-span-3 items-center justify-center'>
+                    <h1 className='text-xl text-white font-bold'>
                         NCKU EnJoy
                     </h1>
                     <p>
@@ -40,14 +40,19 @@ const Header = (props: Props) => {
                                             ? <span className='underline decoration-white/50'>
                                                 (${account?.displayBalance})
                                             </span>
-                                            : <div className="text-xs md:text-xl font-semibold py-2 text-transparent 
+                                            : <motion.div
+                                                whileHover={{ scale: 1, rotate: 360 }}
+                                                whileTap={{
+                                                    scale: 0.8,
+                                                    rotate: 360,
+                                                    borderRadius: "100%"
+                                                }}
+                                                className="text-xs md:text-xl font-semibold py-2 text-transparent 
                                             bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse">
                                                 <a href='https://about-greg.vercel.app/' target='_blank'>
-                                                    <span>{text}</span>
-                                                    <Cursor cursorColor="#447de6" />
+                                                    <p>Created By InJoy Labs</p>
                                                 </a>
-
-                                            </div>}
+                                            </motion.div>}
                                     </button>
                                 )
                             }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import { motion } from 'framer-motion'
 
 interface Props { }
 

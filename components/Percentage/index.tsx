@@ -10,13 +10,19 @@ const Percentage = ({ isCrypto, isStock }: Props) => {
     if (isCrypto) {
         // const totalCryptoPrediction = getTotalPredictMoonAmount+getTotalPredictDustAmount
         // const percentage = ((getTotalPredictMoonAmount/totalCryptoPrediction)*100).toFixed(2)
-        const percentage = 52
+        const percentage = 30
         return (
-            <div>
-                <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                    <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                    // style={`width:${percentage}%`}
-                    > {percentage}%</div>
+            <div className='grid grid-3'>
+                {/* <div className='text-white'>
+                    {percentage}%
+                </div> */}
+                <div className="w-[200px] bg-red-200 rounded-full dark:bg-red-700">
+                    <div className="bg-green-600 text-xs font-medium text-green-100 text-center p-0.5 leading-none rounded-full"
+                        style={{ width: `${percentage}%` }}
+                    >{percentage}%</div>
+                </div>
+                <div className='text-white'>
+                    {100 - percentage}%
                 </div>
 
             </div>
@@ -28,9 +34,9 @@ const Percentage = ({ isCrypto, isStock }: Props) => {
         const percentage = 1
         return (
             <div>
-                <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                    <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                    // style={`width:${percentage}`}
+                <div className="w-[200px] bg-red-200 rounded-full dark:bg-red-700">
+                    <div className="bg-green-600 text-xs font-medium text-green-100 text-center p-0.5 leading-none rounded-full"
+                        style={{ width: `${percentage}%` }}
                     > {percentage}%</div>
                 </div>
             </div>

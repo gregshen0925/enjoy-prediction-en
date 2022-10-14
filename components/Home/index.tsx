@@ -31,7 +31,6 @@ const Home: NextPage<Props> = (props: Props) => {
             </div>
             <div>
                 {(unclaimCryptoAmount || unclaimStockAmount) && <Claim unclaimCrypto={unclaimCryptoAmount} unclaimStock={unclaimStockAmount} />}
-
             </div>
         </div>
     )

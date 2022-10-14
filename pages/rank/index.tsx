@@ -9,7 +9,7 @@ const Info: NextPage = (props: Props) => {
     const isCrypto = true
     return (
         <div>
-            <div className='text-white'>Coming Soon</div>
+            {/* <div className='text-white'>Coming Soon</div> */}
             <Percentage isCrypto={isCrypto} />
         </div>
     )
