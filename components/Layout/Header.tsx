@@ -16,14 +16,14 @@ const Header = (props: Props) => {
     // })
 
     return (
-        <header className='grid grid-cols-2 md:grid-cols-5 justify-between p-5'>
-            <div className='flex items-center space-x-2'>
+        <header className='grid grid-cols-2 md:grid-cols-2 justify-between p-5'>
+            <div className='flex items-center space-x-2 '>
                 <img
                     className='rounded-full h-20 w-20'
                     src='https://i.imgur.com/vHZqwZF.png'
                     alt=''
                 />
-                <div className=' md:flex md:col-span-3 items-center justify-center'>
+                <div className='items-center justify-center'>
                     <h1 className='text-xl text-white font-bold'>
                         NCKU EnJoy
                     </h1>
@@ -60,16 +60,10 @@ const Header = (props: Props) => {
                         </ConnectButton.Custom>
                     </p>
                 </div>
-                <div className='flex flex-col ml-auto px-4'>
-                    <ChainButton />
-                </div>
             </div>
-
-
-
-
-
-
+            <div className='ml-auto py-4'>
+                <ChainButton />
+            </div>
         </header>
     )
 }

@@ -48,7 +48,7 @@ const ChainButton = (props: Props) => {
 
                             if (chain?.unsupported) {
                                 return (
-                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-1 px-1 rounded font-bold text-xs'>
+                                    <button onClick={openChainModal} type="button" className='text-white bg-red-700 py-1 px-1 rounded font-bold text-xs md:text-lg'>
                                         Wrong Network
                                     </button>
                                 );
@@ -82,7 +82,8 @@ const ChainButton = (props: Props) => {
                                                 )}
                                             </div>
                                         )}
-                                        {chain?.name}
+                                        {(chain.name == "Polygon Mumbai") && "Mumbai"
+                                            || chain?.name}
                                     </button>
                                 </div>
                             );

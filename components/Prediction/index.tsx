@@ -40,9 +40,13 @@ const Precidtion = ({ isStock, isCrypto, Predicted }: Props) => {
         }
         if (isStock) {
             // interact with stock pool
+            toast.success("請確認交易")
+            return
         }
         if (isCrypto) {
             // interact with crypto pool
+            toast.success("請確認交易")
+            return
         }
         console.log(bet)
     };
@@ -68,9 +72,11 @@ const Precidtion = ({ isStock, isCrypto, Predicted }: Props) => {
         }
         if (isStock) {
             // interact with stock pool
+            return
         }
         if (isCrypto) {
             // interact with crypto pool
+            return
         }
         console.log(bet)
     };
