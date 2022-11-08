@@ -20,10 +20,10 @@ const Home: NextPage<Props> = (props: Props) => {
     return (
         <div className="text-center">
             <Head>
-                <title>EnJoy Precidtion</title>
+                <title>EnJoy Prediction</title>
             </Head>
             <div className="pt-10 flex text-white justify-center text-3xl">預測明天NASDAQ或BTC明天是漲或跌的小遊戲</div>
-            <div className="text-[#4fe0d9] font-semibold py-2 px-10">
+            <div className="text-[#5dd5a3] font-semibold py-2 px-10">
                 <span>最低1USDT、最高5USDT，贏的一邊獲得另一邊的籌碼，使用前請先學習如何使用區塊鏈錢包並切換到Polygon鏈！</span>
             </div>
             <div>
