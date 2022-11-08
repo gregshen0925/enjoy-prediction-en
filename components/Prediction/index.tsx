@@ -90,7 +90,7 @@ const Precidtion = ({ isStock, isCrypto, Predicted }: Props) => {
                     onChange={handleChange}
                     value={bet}
                     placeholder='投入USDT數量(1~5)'
-                    className="justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                    className="justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
                 <div className='flex justify-center items-center py-3 truncate'>
                     <div>&nbsp;&nbsp;</div>
