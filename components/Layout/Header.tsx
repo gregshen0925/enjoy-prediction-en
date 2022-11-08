@@ -20,7 +20,11 @@ const Header = (props: Props) => {
             <div className='flex items-center space-x-2'>
                 <img
                     className='rounded-full h-20 w-20'
-                    src='https://i.imgur.com/l65IKOZ.png'
+                    // src='https://i.imgur.com/l65IKOZ.png'
+                    // src='https://i.imgur.com/dqtrhZc.jpg'
+                    // src='https://i.imgur.com/NWwVskz.png'
+                    // src='https://i.imgur.com/E3WLtIj.jpg' 
+                    src='https://i.imgur.com/QsSZEzg.jpg'
                     alt=''
                 />
                 <div className='items-center justify-center md:space-x-10'>
