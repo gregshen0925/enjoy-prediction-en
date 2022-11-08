@@ -14,18 +14,17 @@ const Crypto: NextPage = (props: Props) => {
     // const predicted =
 
     return (
-        <div className='flex flex-col relative text-center 
-        md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'>
+        <div className='grid text-center items-center'>
             {/* <h3 className='uppercase tracking-[20px] text-[#447de6] text-2xl'>
                 &nbsp;Bitcoin
             </h3> */}
-            <div className='absolute top-[5px]'>
+            <div className='relative pt-5 md:pt-20'>
                 <SymbolOverviewNoSSR symbol='BTCUSD' />
             </div>
-            <div className='absolute top-[320px] items-center justify-center'>
+            <div className='relative items-center py-10'>
                 <Precidtion
                     isCrypto={true}
-                    Predicted={true}
+                // Predicted={true}
                 />
             </div>
         </div>

@@ -16,7 +16,7 @@ const Header = (props: Props) => {
     // })
 
     return (
-        <header className='grid grid-cols-2 md:grid-cols-2 justify-between p-5'>
+        <header className='flex justify-between space-x-10 items-center text-white pt-8 px-2'>
             <div className='flex items-center space-x-2 '>
                 <img
                     className='rounded-full h-20 w-20'
@@ -24,8 +24,8 @@ const Header = (props: Props) => {
                     alt=''
                 />
                 <div className='items-center justify-center'>
-                    <h1 className='text-xl text-white font-bold'>
-                        NCKU EnJoy
+                    <h1 className='text-xl text-white font-bold truncate '>
+                        EnJoy Prediction
                     </h1>
                     <p>
                         <ConnectButton.Custom>
@@ -34,25 +34,19 @@ const Header = (props: Props) => {
                                 openAccountModal,
                             }) => {
                                 return (
-                                    <button onClick={openAccountModal} type="button" className='text-xs text-emerald-500 truncate'>
+                                    <button onClick={openAccountModal} type="button" className='text-xs text-emerald-500 truncate hover:text-emerald-200'>
                                         {account?.displayName}
                                         {account?.displayBalance
                                             ? <span className='underline decoration-white/50'>
                                                 (${account?.displayBalance})
                                             </span>
-                                            : <motion.div
-                                                whileHover={{ scale: 1, rotate: 360 }}
-                                                whileTap={{
-                                                    scale: 0.9,
-                                                    rotate: 360,
-                                                    borderRadius: "100%"
-                                                }}
-                                                className="text-xs md:text-xl font-semibold py-2 text-transparent 
-                                            bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse">
+                                            : <div
+                                                className="text-xs md:text-md font-semibold py-2 text-transparent 
+                                            bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse hover:text-blue-200">
                                                 <a href='https://about-greg.vercel.app/' target='_blank'>
                                                     <p>Created By InJoy Labs</p>
                                                 </a>
-                                            </motion.div>}
+                                            </div>}
                                     </button>
                                 )
                             }
