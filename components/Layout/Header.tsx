@@ -46,7 +46,7 @@ const Header = (props: Props) => {
                                                 : <div
                                                     className="text-xs md:text-md font-semibold py-2 text-transparent 
                                             bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse hover:text-blue-200">
-                                                    <a href='https://about-greg.vercel.app/' target='_blank'>
+                                                    <a href='https://injoylabs.io' target='_blank'>
                                                         <p>Created By InJoy Labs</p>
                                                     </a>
                                                 </div>}
