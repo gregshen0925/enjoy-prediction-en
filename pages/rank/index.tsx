@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import Percentage from '../../components/Percentage'
+import Percentage from '../../components/PoolInfo'
 
 type Props = {}
 

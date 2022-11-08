@@ -33,15 +33,15 @@ interface Props {
 
 const Layout: FC<Props> = ({ children }) => {
     return (
-        <div className="">
+        <div className="h-screen snap-y snap-mandatory overflow-y-scroll bg-black">
             <Toaster position="bottom-right" toastOptions={toastOptions} />
             <Suspense fallback={<div className="flex h-screen w-full justify-center items-center">
             </div>}>
-                <div className='bg-black min-h-screen flex flex-col items-center'>
+                <div className=' min-h-screen flex flex-col items-center'>
                     <Header />
                     {children}
                 </div>
-                <div className='sticky inset-x-0 bottom-0 items-center justify-center flex'>
+                <div className='sticky inset-x-0 bottom-0 items-center justify-center flex '>
                     <NavigationTab />
                 </div>
             </Suspense>

@@ -5,7 +5,7 @@ type Props = {
     isStock?: Boolean
 }
 
-const Percentage = ({ isCrypto, isStock }: Props) => {
+const PoolInfo = ({ isCrypto, isStock }: Props) => {
 
     if (isCrypto) {
         // const totalCryptoAmount = getTotalPredictMoonAmount+getTotalPredictDustAmount
@@ -16,20 +16,22 @@ const Percentage = ({ isCrypto, isStock }: Props) => {
         const bet = 3
         return (
             <div>
-                <div className='text-white font-semibold' >
-                    您預測{" "}{bet}{" "}USDT明天會{moonOrDust}
-                </div>
-                <div className='flex-cols-3 flex items-center justify-center py-2'>
-                    <div className='text-white font-semibold px-2'>
-                        {percentage}%
+                <div>
+                    <div className='text-white font-semibold' >
+                        您預測{" "}{bet}{" "}USDT明天會{moonOrDust}
                     </div>
-                    <div>
-                        <div className="w-[100px] bg-red-600 h-5 rounded-full">
-                            <div className="bg-green-600 h-5 rounded-full" style={{ width: `${percentage}%` }}></div>
+                    <div className='flex-cols-3 flex items-center justify-center py-2'>
+                        <div className='text-white font-semibold px-2'>
+                            {percentage}%
                         </div>
-                    </div>
-                    <div className='text-white font-semibold px-2'>
-                        {100 - percentage}%
+                        <div>
+                            <div className="w-[100px] bg-red-600 h-5 rounded-full">
+                                <div className="bg-green-600 h-5 rounded-full" style={{ width: `${percentage}%` }}></div>
+                            </div>
+                        </div>
+                        <div className='text-white font-semibold px-2'>
+                            {100 - percentage}%
+                        </div>
                     </div>
                 </div>
                 <div className='text-white font-semibold'>
@@ -67,4 +69,4 @@ const Percentage = ({ isCrypto, isStock }: Props) => {
 
 }
 
-export default Percentage
+export default PoolInfo

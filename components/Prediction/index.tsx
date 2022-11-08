@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAccount } from 'wagmi'
-import Percentage from '../Percentage'
+import PoolInfo from '../PoolInfo'
 
 interface Props {
     isStock?: Boolean
@@ -79,30 +79,53 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
         }
         console.log(bet)
     };
+    const handleAdd = () => {
+        if (bet == undefined) {
+            setBet(1)
+        } else if (bet > 4) {
+            setBet(5)
+        } else {
+            setBet(bet + 1)
+        }
+    }
+    const handleSub = () => {
+        if (bet == undefined) {
+            return
+        } else if (bet < 1) {
+            setBet(0)
+        } else {
+            setBet(bet - 1)
+        }
+    }
     return (
         <div className='pb-20'>
             {stakeAmount ? (
                 <div>
-                    <div>
-                        您已預測 {(prediction == 1) ? "moon" : "dust"} {stakeAmount} USDT
-                    </div>
-                    <div className='py-3'>
-                        {isCrypto ? (
-                            <Percentage isCrypto={isCrypto} />
-                        ) : (
-                            <Percentage isStock={isStock} />
-                        )}
-                    </div>
+                    您已預測 {(prediction == 1) ? "moon" : "dust"} {stakeAmount} USDT
                 </div>
             ) : (
                 <div>
-                    <input
-                        type="number"
-                        onChange={handleChange}
-                        value={bet}
-                        placeholder='投入USDT數量(1~5)'
-                        className="justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                    />
+                    <div className='flex flex-grid grid-cols-5 w-full justify-center'>
+                        <button
+                            type="button"
+                            onClick={handleSub}
+                            className='bg-white col-span-1 w-[40px] rounded-lg'
+                        >-
+                        </button>
+                        <input
+                            type="number"
+                            onChange={handleChange}
+                            value={bet}
+                            placeholder='投入USDT數量(1~5)'
+                            className="col-span-3 justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                        />
+                        <button
+                            type="button"
+                            onClick={handleAdd}
+                            className='bg-white col-span-1 w-[40px] rounded-lg'
+                        >+
+                        </button>
+                    </div>
                     <div className='flex justify-center items-center py-3 truncate'>
                         <div>&nbsp;&nbsp;</div>
                         <button
@@ -119,10 +142,7 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
                 </div>
             )
             }
-            <div>
-                <h2 className='text-white font-bold'>目前池子總數: { }</h2>
-            </div>
-            {/* <Precidtion /> */}
+            {/* <PoolInfo /> */}
         </div>
     )
 }
