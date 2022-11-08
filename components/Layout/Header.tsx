@@ -17,42 +17,43 @@ const Header = (props: Props) => {
 
     return (
         <header className='flex justify-between space-x-10 items-center text-white pt-8 px-2'>
-            <div className='flex items-center space-x-2 '>
+            <div className='flex items-center space-x-2'>
                 <img
                     className='rounded-full h-20 w-20'
-                    src='https://i.imgur.com/vHZqwZF.png'
+                    src='https://i.imgur.com/l65IKOZ.png'
                     alt=''
                 />
-                <div className='items-center justify-center'>
+                <div className='items-center justify-center md:space-x-10'>
                     <h1 className='text-xl text-white font-bold truncate '>
                         EnJoy Prediction
-                    </h1>
-                    <p>
-                        <ConnectButton.Custom>
-                            {({
-                                account,
-                                openAccountModal,
-                            }) => {
-                                return (
-                                    <button onClick={openAccountModal} type="button" className='text-xs text-emerald-500 truncate hover:text-emerald-200'>
-                                        {account?.displayName}
-                                        {account?.displayBalance
-                                            ? <span className='underline decoration-white/50'>
-                                                (${account?.displayBalance})
-                                            </span>
-                                            : <div
-                                                className="text-xs md:text-md font-semibold py-2 text-transparent 
+                        <p className='flex'>
+                            <ConnectButton.Custom>
+                                {({
+                                    account,
+                                    openAccountModal,
+                                }) => {
+                                    return (
+                                        <button onClick={openAccountModal} type="button" className='text-xs text-emerald-500 truncate hover:text-emerald-300 font-light'>
+                                            {account?.displayName}
+                                            {account?.displayBalance
+                                                ? <span className='underline decoration-white/50'>
+                                                    (${account?.displayBalance})
+                                                </span>
+                                                : <div
+                                                    className="text-xs md:text-md font-semibold py-2 text-transparent 
                                             bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse hover:text-blue-200">
-                                                <a href='https://about-greg.vercel.app/' target='_blank'>
-                                                    <p>Created By InJoy Labs</p>
-                                                </a>
-                                            </div>}
-                                    </button>
-                                )
-                            }
-                            }
-                        </ConnectButton.Custom>
-                    </p>
+                                                    <a href='https://about-greg.vercel.app/' target='_blank'>
+                                                        <p>Created By InJoy Labs</p>
+                                                    </a>
+                                                </div>}
+                                        </button>
+                                    )
+                                }
+                                }
+                            </ConnectButton.Custom>
+                        </p>
+                    </h1>
+
                 </div>
             </div>
             <div className='ml-auto py-4'>
