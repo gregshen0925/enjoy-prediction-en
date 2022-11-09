@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAccount } from 'wagmi'
-import PoolInfo from '../PoolInfo'
+import { useContract, useContractRead } from 'wagmi'
+import ContractABI from '../../EnJoyPrediction.json'
+
 
 interface Props {
     isStock?: Boolean
@@ -10,9 +12,27 @@ interface Props {
     stakeAmount?: number
 }
 
-const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
+const Precidtion = ({ isStock, isCrypto }: Props) => {
     const [bet, setBet] = useState<number | undefined>(undefined);
     const { address } = useAccount()
+    // from 0~5
+    const [stakeAmount, setStakeAmount] = useState<number>(0)
+    // 1 means moon, 2 means dust
+    const [prediction, setPrediction] = useState<number>(0)
+
+    const timestamp = Math.floor(new Date().valueOf() / 1000)
+
+    useContractRead({
+        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        contractInterface: ContractABI.abi,
+        functionName: 'getPlayerStakeInfo',
+        args: [address, timestamp],
+        onSuccess(data) {
+            const { stakeAmount, prediction } = data
+            setStakeAmount(stakeAmount)
+            setPrediction(prediction)
+        },
+    })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
@@ -78,7 +98,7 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
             return
         }
         console.log(bet)
-    };
+    }
     const handleAdd = () => {
         if (bet == undefined) {
             setBet(1)

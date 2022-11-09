@@ -8,14 +8,15 @@ import { BigNumber, utils } from 'ethers'
 type Props = {
     isCrypto?: Boolean
     isStock?: Boolean
-    totalPoolAmount: BigNumber
-    longPool: BigNumber
-
 }
 
 
 
-const PoolInfo = ({ isCrypto, isStock, totalPoolAmount, longPool }: Props) => {
+const PoolInfo = ({ isCrypto, isStock }: Props) => {
+
+    const [totalPoolAmount, setTotalPoolAmount] = useState<BigNumber>(BigNumber.from(0))
+    const [playerCount, setPlayerCount] = useState<number>(0)
+    const [longPool, setLongPool] = useState<BigNumber>(BigNumber.from(0))
 
     const timestamp = Math.floor(new Date().valueOf() / 1000)
 
@@ -24,6 +25,20 @@ const PoolInfo = ({ isCrypto, isStock, totalPoolAmount, longPool }: Props) => {
     const formatUSDT = (amount: BigNumber): string => {
         return utils.formatEther(amount.mul(pad))
     }
+
+
+    const getTableInfo = useContractRead({
+        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        contractInterface: ContractABI.abi,
+        functionName: 'getTableInfo',
+        args: [timestamp],
+        onSuccess(data) {
+            const { result, startPrice, longPool, shortPool, playerCount } = data
+            setTotalPoolAmount(BigNumber.from(longPool).add(shortPool))
+            setLongPool(longPool)
+            setPlayerCount(playerCount)
+        },
+    })
 
     if (isCrypto) {
         const percentage = totalPoolAmount?.eq(0) ? 50 : (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)
