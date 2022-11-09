@@ -3,14 +3,10 @@ import { useContractRead } from 'wagmi';
 import ContractABI from '../../EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
 
-
-
 type Props = {
     isCrypto?: Boolean
     isStock?: Boolean
 }
-
-
 
 const PoolInfo = ({ isCrypto, isStock }: Props) => {
 
@@ -25,7 +21,6 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
     const formatUSDT = (amount: BigNumber): string => {
         return utils.formatEther(amount.mul(pad))
     }
-
 
     const getTableInfo = useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',

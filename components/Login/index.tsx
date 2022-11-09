@@ -2,10 +2,7 @@ import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Cursor, useTypewriter } from "react-simple-typewriter"
 
-
 type Props = {}
-
-
 
 const Login = (props: Props) => {
     const [text, count] = useTypewriter({

@@ -1,21 +1,15 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React from 'react'
 import type { NextPage } from 'next'
 import Precidtion from '../../components/Prediction'
 import dynamic from 'next/dynamic';
-
-import { useAccount } from 'wagmi'
 import Countdown from '../../components/Countdown';
 import PoolInfo from '../../components/PoolInfo';
-
-
-
 
 const SymbolOverviewNoSSR = dynamic(() => import("../../components/Chart"), { ssr: false });
 
 type Props = {}
 
 const Crypto: NextPage = (props: Props) => {
-    const { address } = useAccount()
     const oneMin = 60000;
     const oneHour = 60 * oneMin;
     const oneDay = 24 * oneHour;

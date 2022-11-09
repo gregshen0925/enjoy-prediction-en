@@ -4,10 +4,7 @@ import React, { useState } from 'react'
 import { FaBtc, FaMoneyBillAlt, FaHome, FaInfo, FaUserFriends } from "react-icons/fa"
 
 
-type Props = {
-    // activeNum: number
-    // changeActiveNum: Function
-}
+type Props = {}
 
 const Menus = [
     { name: "Home", icon: <FaHome />, dis: "translate-x-0", router: '/' },
@@ -39,10 +36,6 @@ const currentTab = (path: string): Tab => {
 const NavigationTab = (props: Props) => {
     const { pathname } = useRouter()
     const [isActive, setActive] = useState<Tab>(currentTab(pathname))
-    // const [selectedTab, setSelectedTab] = useState<Tab>(currentTab(pathname))
-    // useEffect(() => {
-    //     setSelectedTab((currentTab(pathname)))
-    // }, [pathname])
 
     return (
         <div className="bg-gray-200 max-h-[4.4rem] px-6 rounded-t-xl">

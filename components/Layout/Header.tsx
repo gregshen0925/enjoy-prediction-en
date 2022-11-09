@@ -1,34 +1,28 @@
 import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import ChainButton from '../ChainButton/index';
-import { motion } from 'framer-motion'
-// import { useTypewriter } from "react-simple-typewriter"
-
+import { useTypewriter } from "react-simple-typewriter"
 
 type Props = {}
 
 const Header = (props: Props) => {
-    // const [text, count] = useTypewriter({
-    //     words: [
-    //         `Created By InJoy Labs`
-    //     ],
-    //     delaySpeed: 2000,
-    // })
+    const [text, count] = useTypewriter({
+        words: [
+            `Created By InJoy Labs`
+        ],
+        delaySpeed: 2000,
+    })
 
     return (
         <header className='flex justify-between space-x-10 items-center text-white pt-8 px-2'>
             <div className='flex items-center space-x-2'>
                 <img
                     className='rounded-full h-20 w-20'
-                    // src='https://i.imgur.com/l65IKOZ.png'
-                    // src='https://i.imgur.com/dqtrhZc.jpg'
-                    // src='https://i.imgur.com/NWwVskz.png'
-                    // src='https://i.imgur.com/E3WLtIj.jpg' 
                     src='https://i.imgur.com/QsSZEzg.jpg'
                     alt=''
                 />
                 <div className='items-center justify-center md:space-x-10'>
-                    <h1 className='text-xl text-white font-bold truncate '>
+                    <h1 className='text-xl text-white font-bold truncate'>
                         EnJoy Prediction
                         <p className='flex'>
                             <ConnectButton.Custom>
@@ -47,7 +41,7 @@ const Header = (props: Props) => {
                                                     className="text-xs md:text-md font-semibold py-2 text-transparent 
                                             bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 animate-pulse hover:text-blue-200">
                                                     <a href='https://injoylabs.io' target='_blank'>
-                                                        <p>Created By InJoy Labs</p>
+                                                        <span>{text}</span>
                                                     </a>
                                                 </div>}
                                         </button>

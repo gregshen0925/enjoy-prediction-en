@@ -119,49 +119,45 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     }
     return (
         <div className=''>
-            {stakeAmount ? (
-                <div>
-                    您已預測 {(prediction == 1) ? "moon" : "dust"} {stakeAmount} USDT
+            {stakeAmount ? (<div>
+                您已預測 {(prediction == 1) ? "漲" : "跌"} {stakeAmount} USDT
+            </div>) : null}
+            <div>
+                <div className='flex flex-grid grid-cols-5 w-full justify-center'>
+                    <button
+                        type="button"
+                        onClick={handleSub}
+                        className='bg-white col-span-1 w-[40px] rounded-lg'
+                    >-
+                    </button>
+                    <input
+                        type="number"
+                        onChange={handleChange}
+                        value={bet}
+                        placeholder='投入USDT數量(0~5)'
+                        className="col-span-3 justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                    />
+                    <button
+                        type="button"
+                        onClick={handleAdd}
+                        className='bg-white col-span-1 w-[40px] rounded-lg'
+                    >+
+                    </button>
                 </div>
-            ) : (
-                <div>
-                    <div className='flex flex-grid grid-cols-5 w-full justify-center'>
-                        <button
-                            type="button"
-                            onClick={handleSub}
-                            className='bg-white col-span-1 w-[40px] rounded-lg'
-                        >-
-                        </button>
-                        <input
-                            type="number"
-                            onChange={handleChange}
-                            value={bet}
-                            placeholder='投入USDT數量(0~5)'
-                            className="col-span-3 justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleAdd}
-                            className='bg-white col-span-1 w-[40px] rounded-lg'
-                        >+
-                        </button>
-                    </div>
-                    <div className='flex justify-center items-center py-3 truncate'>
-                        <div>&nbsp;&nbsp;</div>
-                        <button
-                            type="button"
-                            onClick={handleMoon}
-                            className="text-white bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
-                        >明天會漲</button>
-                        <button
-                            type="button"
-                            onClick={handleDust}
-                            className="text-black bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-red-500"
-                        >明天會跌</button>
-                    </div>
+                <div className='flex justify-center items-center py-3 truncate'>
+                    <div>&nbsp;&nbsp;</div>
+                    <button
+                        type="button"
+                        onClick={handleMoon}
+                        className="text-white bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
+                    >明天會漲</button>
+                    <button
+                        type="button"
+                        onClick={handleDust}
+                        className="text-black bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-red-500"
+                    >明天會跌</button>
                 </div>
-            )
-            }
+            </div>
         </div>
     )
 }
