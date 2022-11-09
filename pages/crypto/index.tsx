@@ -20,6 +20,12 @@ const Crypto: NextPage = (props: Props) => {
     // 1 means moon, 2 means dust
     const [prediction, setPrediction] = useState<number>(0)
 
+    const oneMin = 60000;
+    const oneHour = 60 * oneMin;
+    const oneDay = 24 * oneHour;
+    const timeOffset = 11 * oneHour;
+    const today1900 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
+
     // useEffect(() => {
     //     const contractRead = useContractRead({
     //         addressOrName: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
@@ -41,7 +47,9 @@ const Crypto: NextPage = (props: Props) => {
                 &nbsp;Bitcoin
             // </h3> */}
             <div className='relative pt-5 md:pt-10'>
-                <Countdown />
+                <Countdown
+                    settleTime={today1900}
+                />
             </div>
             <div className='relative py-5 md:py-10'>
                 <SymbolOverviewNoSSR symbol='BTCUSD' />

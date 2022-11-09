@@ -12,6 +12,14 @@ const SymbolOverviewNoSSR = dynamic(() => import("../../components/Chart"), { ss
 
 
 const Stocks: NextPage = (props: Props) => {
+
+
+    const oneMin = 60000;
+    const oneHour = 60 * oneMin;
+    const oneDay = 24 * oneHour;
+    const timeOffset = 14.5 * oneHour;
+    const today2230 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
+
     // query if user already predicted stocks today
     // const predicted =
 
@@ -21,7 +29,9 @@ const Stocks: NextPage = (props: Props) => {
                 &nbsp;NASDAQ
             </h3> */}
             <div className='relative pt-5 md:pt-10'>
-                <Countdown />
+                <Countdown
+                    settleTime={today2230}
+                />
             </div>
             <div className='relative py-5 md:py-10'>
                 <SymbolOverviewNoSSR symbol='NDX' />
