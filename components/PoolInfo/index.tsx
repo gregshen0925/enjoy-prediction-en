@@ -40,7 +40,7 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
     })
 
     if (isCrypto) {
-        const percentage = (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)
+        const percentage = totalPoolAmount.eq(0) ? 50 : (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)
         const moonOrDust = "Moon"
         const bet = 3
         return (
