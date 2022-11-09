@@ -21,22 +21,24 @@ const Crypto: NextPage = (props: Props) => {
             {/* <h3 className='uppercase tracking-[20px] text-[#447de6] text-2xl'>
                 &nbsp;Bitcoin
             // </h3> */}
-            <div className='relative pt-5 md:pt-10'>
+            <div className='pt-5 md:pt-10'>
                 <Countdown
                     settleTime={today1900}
                 />
             </div>
-            <div className='relative py-5 md:py-10'>
+            <div className='py-5 md:py-10'>
                 <SymbolOverviewNoSSR symbol='BTCUSD' />
             </div>
-            <div className='relative items-center'>
+            <div className='items-center'>
                 <Precidtion
                     isCrypto={true}
                 />
             </div>
-            <PoolInfo
-                isCrypto={true}
-            />
+            <div className='pb-20'>
+                <PoolInfo
+                    isCrypto={true}
+                />
+            </div>
         </div>
     )
 }
