@@ -1,48 +1,32 @@
 import React, { useState } from 'react'
-import { useContractRead, useAccount } from 'wagmi';
+import { useContractRead } from 'wagmi';
 import ContractABI from '../../EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
+
 
 
 type Props = {
     isCrypto?: Boolean
     isStock?: Boolean
-}
+    totalPoolAmount: BigNumber
+    longPool: BigNumber
 
-const pad = BigNumber.from(10).pow(12);
-
-const formatUSDT = (amount: BigNumber): string => {
-    return utils.formatEther(amount.mul(pad))
 }
 
 
-const PoolInfo = ({ isCrypto, isStock }: Props) => {
-    const [totalPoolAmount, setTotalPoolAmount] = useState<BigNumber>(BigNumber.from(0))
-    const [playerCount, setPlayerCount] = useState<number>(0)
-    const [longPool, setLongPool] = useState<BigNumber>(BigNumber.from(0))
-    const [shortPool, setShortPool] = useState<BigNumber>(BigNumber.from(0))
+
+const PoolInfo = ({ isCrypto, isStock, totalPoolAmount, longPool }: Props) => {
 
     const timestamp = Math.floor(new Date().valueOf() / 1000)
 
-    // console.log("totalPoolAmount", totalPoolAmount)
-    useContractRead({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
-        functionName: 'getTableInfo',
-        args: [timestamp],
-        onSuccess(data) {
-            const { result, startPrice, longPool, shortPool, playerCount } = data
-            setTotalPoolAmount(BigNumber.from(longPool).add(shortPool))
-            setLongPool(longPool)
-            setShortPool(shortPool)
-            setPlayerCount(playerCount)
-        },
-    })
+    const pad = BigNumber.from(10).pow(12);
+
+    const formatUSDT = (amount: BigNumber): string => {
+        return utils.formatEther(amount.mul(pad))
+    }
 
     if (isCrypto) {
-        const percentage = totalPoolAmount.eq(0) ? 50 : (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)
-        const moonOrDust = "Moon"
-        const bet = 3
+        const percentage = totalPoolAmount?.eq(0) ? 50 : (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)
         return (
             <div>
                 <div>

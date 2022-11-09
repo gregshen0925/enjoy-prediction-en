@@ -142,7 +142,6 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
                 </div>
             )
             }
-            {/* <PoolInfo /> */}
         </div>
     )
 }
