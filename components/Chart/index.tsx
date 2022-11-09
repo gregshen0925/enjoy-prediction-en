@@ -1,6 +1,7 @@
 import React from 'react'
 import { AdvancedChart } from 'react-tradingview-embed'
 
+
 interface Props {
     symbol: string
 }

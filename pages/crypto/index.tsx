@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import type { NextPage } from 'next'
 import Precidtion from '../../components/Prediction'
 import dynamic from 'next/dynamic';
-import { useContract } from 'wagmi'
+import { useContract, useContractRead } from 'wagmi'
 import ContractABI from '../../EnJoyPrediction.json'
-import { useContractRead } from 'wagmi'
 import { useAccount } from 'wagmi'
 import Countdown from '../../components/Countdown';
+import PoolInfo from '../../components/PoolInfo';
+
 
 
 const SymbolOverviewNoSSR = dynamic(() => import("../../components/Chart"), { ssr: false });
@@ -25,21 +26,19 @@ const Crypto: NextPage = (props: Props) => {
     const oneDay = 24 * oneHour;
     const timeOffset = 11 * oneHour;
     const today1900 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
+    const timestamp = Math.floor(new Date().valueOf() / 1000)
 
-    // useEffect(() => {
-    //     const contractRead = useContractRead({
-    //         addressOrName: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
-    //         contractInterface: ContractABI.abi,
-    //         functionName: 'currentStakeInfo',
-    //         args: [address],
-    //         onSuccess(data) {
-    //             const { amount, prediction } = data
-    //             setStakeAmount(amount)
-    //             setPrediction(prediction)
-    //         },
-    //     })
-
-    // }, [address])
+    useContractRead({
+        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        contractInterface: ContractABI.abi,
+        functionName: 'getPlayerStakeInfo',
+        args: [address, timestamp],
+        onSuccess(data) {
+            const { stakeAmount, prediction } = data
+            setStakeAmount(stakeAmount)
+            setPrediction(prediction)
+        },
+    })
 
     return (
         <div className='grid text-center items-center'>
@@ -61,6 +60,9 @@ const Crypto: NextPage = (props: Props) => {
                     prediction={prediction}
                 />
             </div>
+            <PoolInfo
+                isCrypto={true}
+            />
         </div>
     )
 }

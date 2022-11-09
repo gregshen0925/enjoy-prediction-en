@@ -98,7 +98,7 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
         }
     }
     return (
-        <div className='pb-20'>
+        <div className=''>
             {stakeAmount ? (
                 <div>
                     您已預測 {(prediction == 1) ? "moon" : "dust"} {stakeAmount} USDT
