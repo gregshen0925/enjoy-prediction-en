@@ -116,7 +116,7 @@ const Precidtion = ({ isStock, isCrypto, prediction, stakeAmount }: Props) => {
                             type="number"
                             onChange={handleChange}
                             value={bet}
-                            placeholder='投入USDT數量(1~5)'
+                            placeholder='投入USDT數量(0~5)'
                             className="col-span-3 justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                         />
                         <button
