@@ -29,9 +29,10 @@ const Home: NextPage<Props> = (props: Props) => {
                 <div>3. Info那一頁會再補上各位預測排名，看看誰是預測高手</div>
                 <div>4. 最後會讓所有使用者可以mint有自己資訊的Soulbound NFT，並結合每日抽卡功能，讓大家認識更多金融科技、區塊鏈的朋友。</div>
             </div>
-            <div>
+            {/* <div>
                 {(unclaimCryptoAmount || unclaimStockAmount) && <Claim unclaimCrypto={unclaimCryptoAmount} unclaimStock={unclaimStockAmount} />}
-            </div>
+            </div> */}
+            <div>黑色的字，想不到吧</div>
         </div>
     )
 }
