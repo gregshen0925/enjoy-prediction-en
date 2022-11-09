@@ -34,10 +34,6 @@ const Crypto: NextPage = (props: Props) => {
     const today1900 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
     const timestamp = Math.floor(new Date().valueOf() / 1000)
 
-
-
-
-
     useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
@@ -63,7 +59,6 @@ const Crypto: NextPage = (props: Props) => {
         },
         cacheTime: 20_000,
     })
-
 
     return (
         <div className='grid text-center items-center'>
