@@ -47,8 +47,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         setBet(e.target.valueAsNumber)
     };
 
-    const handleMoon = () => {
-        setPredictLong(true)
+    const handleMoon = async () => {
         if (!address) {
             toast.error('請先連接錢包')
             return
@@ -68,11 +67,13 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isStock) {
+            setPredictLong(true)
             // interact with stock pool
             toast.success("請確認交易")
             return
         }
         if (isCrypto) {
+            setPredictLong(true)
             write?.()
             toast.success("請確認交易")
             return
@@ -80,7 +81,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     };
 
     const handleDust = () => {
-        setPredictLong(false)
         if (!address) {
             toast.error('請先連接錢包')
             return
@@ -100,11 +100,13 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isStock) {
+            setPredictLong(false)
             // interact with stock pool
             toast.success("請確認交易")
             return
         }
         if (isCrypto) {
+            setPredictLong(false)
             write?.()
             toast.success("請確認交易")
             return
