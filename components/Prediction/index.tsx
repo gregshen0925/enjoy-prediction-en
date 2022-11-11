@@ -34,14 +34,22 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         },
     })
 
-    const { config } = usePrepareContractWrite({
+    const { config: longConfig } = usePrepareContractWrite({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
         functionName: 'predict',
-        args: [predictLong, bet ? bet * 1000000 : 1000000]
+        args: [true, bet ? bet * 1000000 : 1000000]
     })
 
-    const { data, isLoading, isSuccess, write } = useContractWrite(config)
+    const { config: shortConfig } = usePrepareContractWrite({
+        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        contractInterface: ContractABI.abi,
+        functionName: 'predict',
+        args: [false, bet ? bet * 1000000 : 1000000]
+    })
+
+    const { data, isLoading, isSuccess, write: longWrite } = useContractWrite(longConfig)
+    const { write: shortWrite} = useContractWrite(shortConfig)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
@@ -73,8 +81,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            setPredictLong(true)
-            write?.()
+            longWrite?.()
             toast.success("請確認交易")
             return
         }
@@ -106,8 +113,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            setPredictLong(false)
-            write?.()
+            shortWrite?.()
             toast.success("請確認交易")
             return
         }
