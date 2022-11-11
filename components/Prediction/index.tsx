@@ -13,7 +13,6 @@ interface Props {
 
 const Precidtion = ({ isStock, isCrypto }: Props) => {
     const [bet, setBet] = useState<number | undefined>(undefined)
-    const [predictLong, setPredictLong] = useState<boolean>(false)
     const { address } = useAccount()
     // from 0~5
     const [stakeAmount, setStakeAmount] = useState<number>(0)
@@ -75,7 +74,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isStock) {
-            setPredictLong(true)
             // interact with stock pool
             toast.success("請確認交易")
             return
@@ -107,7 +105,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isStock) {
-            setPredictLong(false)
             // interact with stock pool
             toast.success("請確認交易")
             return
