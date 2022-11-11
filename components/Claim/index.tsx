@@ -13,13 +13,13 @@ const Claim = (props: Props) => {
     const [totalUnclaimReward, setTotalUnclaimedReward] = useState<number>(0)
     const { address } = useAccount()
 
-    const { isLoading } = useContractRead({
+    const { isFetching } = useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
         functionName: 'getPlayerUnclaimReward',
         args: [address],
         onSuccess(claimableReward) {
-            setUnclaimedCryptoReward(claimableReward.toNumber())
+            setUnclaimedCryptoReward(claimableReward.toNumber() / 1000000)
         },
     })
 
@@ -42,32 +42,37 @@ const Claim = (props: Props) => {
 
     useEffect(() => {
         setTotalUnclaimedReward(unclaimedCryptoReward + unclaimedStockReward)
-    }, [unclaimedCryptoReward, unclaimedStockReward])
+    }, [unclaimedCryptoReward, unclaimedStockReward, isSuccess])
 
 
 
     return (
-        isLoading ? (
+        <>
+            isFetching ? (
             <div className='text-white'>Loading...</div>
-        ) : (
+            ) : (
             totalUnclaimReward ?
-                (
-                    <div>
-                        <div className='text-white font-bold'>
-                            Congrats!! You've got {totalUnclaimReward} USDT to claim!!
-                        </div>
-                        <div className='px-1 py-2'>
-                            <button
-                                className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
-                                onClick={handleClaim}
-                            >
-                                Claim
-                            </button>
-                        </div>
+            (
+            <div>
+                <div className='text-white font-bold'>
+                    Congrats!! You've got {totalUnclaimReward.toFixed(2)} USDT to claim!!
+                </div>
+                <div className='px-1 py-2'>
+                    <button
+                        className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
+                        onClick={handleClaim}
+                    >
+                        Claim
+                    </button>
+                </div>
 
-                    </div>
-                ) : null
-        )
+            </div>
+            ) : null
+            )
+            isSuccess?(<div className='text-white'>
+                You've Claimed Your Rewards!!
+            </div>):null
+        </>
     )
 }
 
