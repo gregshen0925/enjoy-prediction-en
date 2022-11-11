@@ -14,7 +14,7 @@ const Crypto: NextPage = (props: Props) => {
     const oneHour = 60 * oneMin;
     const oneDay = 24 * oneHour;
     const timeOffset = 11 * oneHour;
-    const today1900 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
+    const today1900 = Math.ceil((new Date().valueOf() - timeOffset) / oneDay) * oneDay + timeOffset
 
     return (
         <div className='grid text-center items-center'>

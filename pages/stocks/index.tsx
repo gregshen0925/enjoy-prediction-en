@@ -18,7 +18,7 @@ const Stocks: NextPage = (props: Props) => {
     const oneHour = 60 * oneMin;
     const oneDay = 24 * oneHour;
     const timeOffset = 14.5 * oneHour;
-    const today2230 = Math.floor(new Date().valueOf() / oneDay) * oneDay + timeOffset
+    const today2230 = Math.ceil((new Date().valueOf() - timeOffset) / oneDay) * oneDay + timeOffset
 
     // query if user already predicted stocks today
     // const predicted =
