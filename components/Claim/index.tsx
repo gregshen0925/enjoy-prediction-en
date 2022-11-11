@@ -13,7 +13,7 @@ const Claim = (props: Props) => {
     const [totalUnclaimReward, setTotalUnclaimedReward] = useState<number>(0)
     const { address } = useAccount()
 
-    useContractRead({
+    const { isLoading } = useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
         functionName: 'getPlayerUnclaimReward',
@@ -29,70 +29,43 @@ const Claim = (props: Props) => {
         functionName: 'claim',
     })
 
-    const { data, isLoading, isSuccess, write } = useContractWrite(config)
+    const { data, isSuccess, write } = useContractWrite(config)
 
-    const handleClaim = async () => {
+    const handleClaim = () => {
         if (unclaimedCryptoReward) {
-            () => write?.()
+            write?.()
         }
-        if (unclaimedStockReward) {
-            // claim from Stock pool
-        }
+        // if (unclaimedStockReward) {
+        //     // claim from Stock pool
+        // }
     }
 
     useEffect(() => {
         setTotalUnclaimedReward(unclaimedCryptoReward + unclaimedStockReward)
     }, [unclaimedCryptoReward, unclaimedStockReward])
 
-    if (unclaimedCryptoReward) {
-        return (
-            <div>
-                <div className='text-white font-bold'>
-                    Congrats!! You've got {totalUnclaimReward} USDT to claim!!
-                </div>
-                <div className='px-1 py-2'>
-                    <button
-                        className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
-                        onClick={handleClaim}
-                    >
-                        Claim
-                    </button>
-                </div>
 
-            </div>
-        )
-    }
-    else {
-        return (
-            <div>
-                hi
-            </div>
-        )
-    }
-    // if (unclaimCrypto) {
-    //     return (
-    //         <div>
-    //             <div className='text-white'>
-    //                 You've got {unclaimCrypto} USDT to claim
-    //             </div>
-    //         </div>
-    //     )
-    // }
-    // if (unclaimStock) {
-    //     return (
-    //         <div>
-    //             <div className='text-white'>
-    //                 You've got {unclaimStock} USDT to claim
-    //             </div>
-    //         </div>
-    //     )
-    // }
-    // else {
-    //     return (
-    //         <div></div>
-    //     )
-    // }
+    isLoading ? (
+        <div className='text-white'>Loading...</div>
+    ) : (
+        totalUnclaimReward ?
+            (
+                <div>
+                    <div className='text-white font-bold'>
+                        Congrats!! You've got {totalUnclaimReward} USDT to claim!!
+                    </div>
+                    <div className='px-1 py-2'>
+                        <button
+                            className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
+                            onClick={handleClaim}
+                        >
+                            Claim
+                        </button>
+                    </div>
 
+                </div>
+            ) : null
+    )
 }
 
 export default Claim
