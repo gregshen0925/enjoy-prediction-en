@@ -16,8 +16,6 @@ const Countdown = ({ settleTime }: Props) => {
 
     const settleTimeDate = useMemo(() => new Date(settleTime), [settleTime]);
 
-    console.log(settleTimeDate)
-
     const startTimer = () => {
         const interval = setInterval(() => {
             const now = new Date().valueOf()
@@ -45,7 +43,7 @@ const Countdown = ({ settleTime }: Props) => {
     return (
         <Fragment>
             <section className='count-container'>
-                <div className='text-white font-bold'>下次開獎 {settleTimeDate.getFullYear()}年{settleTimeDate.getMonth()+1}月{settleTimeDate.getDate()}日{settleTimeDate.getHours()}點{settleTimeDate.getMinutes()}分</div>
+                <div className='text-white font-bold'>下次開獎 {settleTimeDate.getFullYear()}年{settleTimeDate.getMonth() + 1}月{settleTimeDate.getDate()}日{settleTimeDate.getHours()}點{settleTimeDate.getMinutes()}分</div>
                 <section className='py-2'>
                     <div className='flex text-[#4df1c0] m-auto items-center text-center h-[80px] w-[300px]
                     sm:h-[150px] sm:w-[350px] bg-gradient-to-r from-[#051818] to-[#0e3839]

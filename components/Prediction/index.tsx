@@ -38,7 +38,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
         functionName: 'predict',
-        args: [predictLong, bet]
+        args: [predictLong, bet ? bet * 1000000 : 1000000]
     })
 
     const { data, isLoading, isSuccess, write } = useContractWrite(config)
