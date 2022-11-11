@@ -47,32 +47,32 @@ const Claim = (props: Props) => {
 
 
     return (
-        <>
-            isFetching ? (
-            <div className='text-white'>Loading...</div>
-            ) : (
-            totalUnclaimReward ?
-            (
-            <div>
-                <div className='text-white font-bold'>
-                    Congrats!! You've got {totalUnclaimReward.toFixed(2)} USDT to claim!!
-                </div>
-                <div className='px-1 py-2'>
-                    <button
-                        className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
-                        onClick={handleClaim}
-                    >
-                        Claim
-                    </button>
-                </div>
+        <div>
+            {isFetching ? (
+                <div className='text-white'>Fetching Your Status...</div>
+            ) : null}
 
-            </div>
-            ) : null
-            )
-            isSuccess?(<div className='text-white'>
+            {(totalUnclaimReward > 0) ?
+                (
+                    <div>
+                        <div className='text-white font-bold'>
+                            Congrats!! You've got {totalUnclaimReward.toFixed(2)} USDT to claim!!
+                        </div>
+                        <div className='px-1 py-2'>
+                            <button
+                                className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
+                                onClick={handleClaim}
+                            >
+                                Claim
+                            </button>
+                        </div>
+                    </div>
+                ) : null}
+
+            {isSuccess ? (<div className='text-white'>
                 You've Claimed Your Rewards!!
-            </div>):null
-        </>
+            </div>) : null}
+        </div>
     )
 }
 
