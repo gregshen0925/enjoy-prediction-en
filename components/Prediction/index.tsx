@@ -73,7 +73,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            () => write?.()
+            write?.()
             toast.success("請確認交易")
             return
         }
@@ -105,7 +105,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            () => write?.()
+            write?.()
             toast.success("請確認交易")
             return
         }
