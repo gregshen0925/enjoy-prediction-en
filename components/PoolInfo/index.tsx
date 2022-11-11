@@ -22,7 +22,7 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
         return utils.formatEther(amount.mul(pad))
     }
 
-    const getTableInfo = useContractRead({
+    useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
         contractInterface: ContractABI.abi,
         functionName: 'getTableInfo',
@@ -45,7 +45,7 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
                     </div> */}
                     <div className='flex-cols-3 flex items-center justify-center'>
                         <div className='text-white font-semibold px-2'>
-                            {percentage}%
+                            {percentage.toFixed(2)}%
                         </div>
                         <div>
                             <div className="w-[100px] bg-red-600 h-5 rounded-full">

@@ -5,16 +5,14 @@ import Claim from "../Claim";
 
 
 
+
 interface Props {
 
 }
 
 const Home: NextPage<Props> = (props: Props) => {
 
-    // const UnclaimCryptoAmount = getUnclaimCryptoAmountFromContract
-    // const UnclaimStockAmount = getUnclaimStockAmountFromContract
-    const unclaimCryptoAmount = 0
-    const unclaimStockAmount = 0
+
 
 
     return (
@@ -22,6 +20,7 @@ const Home: NextPage<Props> = (props: Props) => {
             <Head>
                 <title>EnJoy Prediction</title>
             </Head>
+            <Claim />
             <div className="pt-10 flex text-white justify-center text-xl md:text-3xl">預測明天NASDAQ或BTC明天是漲或跌的小遊戲</div>
             <div className="text-[#43c08c] font-semibold py-2 px-10 text-left space-y-2 max-w-3xl">
                 <div>1. 最低1USDT、最高5USDT，贏的一邊獲得另一邊的籌碼，使用前請先學習如何使用區塊鏈錢包並切換到Polygon鏈！</div>
@@ -29,9 +28,6 @@ const Home: NextPage<Props> = (props: Props) => {
                 <div>3. 未來可至Rank頁面查看最強預測專家</div>
                 <div>4. 將來會將用戶資料結合SBT並開發抽卡交友功能</div>
             </div>
-            {/* <div>
-                {(unclaimCryptoAmount || unclaimStockAmount) && <Claim unclaimCrypto={unclaimCryptoAmount} unclaimStock={unclaimStockAmount} />}
-            </div> */}
             <div>黑色的字，想不到吧</div>
         </div>
     )

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useAccount } from 'wagmi'
-import { useContract, useContractRead } from 'wagmi'
+import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import { useContractRead } from 'wagmi'
 import ContractABI from '../../EnJoyPrediction.json'
-
 
 interface Props {
     isStock?: Boolean
@@ -13,7 +12,8 @@ interface Props {
 }
 
 const Precidtion = ({ isStock, isCrypto }: Props) => {
-    const [bet, setBet] = useState<number | undefined>(undefined);
+    const [bet, setBet] = useState<number | undefined>(undefined)
+    const [predictLong, setPredictLong] = useState<boolean>(false)
     const { address } = useAccount()
     // from 0~5
     const [stakeAmount, setStakeAmount] = useState<number>(0)
@@ -34,11 +34,21 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         },
     })
 
+    const { config } = usePrepareContractWrite({
+        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        contractInterface: ContractABI.abi,
+        functionName: 'predict',
+        args: [predictLong, bet]
+    })
+
+    const { data, isLoading, isSuccess, write } = useContractWrite(config)
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
     };
 
     const handleMoon = () => {
+        setPredictLong(true)
         if (!address) {
             toast.error('請先連接錢包')
             return
@@ -63,14 +73,14 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            // interact with crypto pool
+            () => write?.()
             toast.success("請確認交易")
             return
         }
-        console.log(bet)
     };
 
     const handleDust = () => {
+        setPredictLong(false)
         if (!address) {
             toast.error('請先連接錢包')
             return
@@ -91,13 +101,14 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         }
         if (isStock) {
             // interact with stock pool
+            toast.success("請確認交易")
             return
         }
         if (isCrypto) {
-            // interact with crypto pool
+            () => write?.()
+            toast.success("請確認交易")
             return
         }
-        console.log(bet)
     }
     const handleAdd = () => {
         if (bet == undefined) {
