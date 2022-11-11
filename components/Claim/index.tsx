@@ -45,26 +45,29 @@ const Claim = (props: Props) => {
     }, [unclaimedCryptoReward, unclaimedStockReward])
 
 
-    isLoading ? (
-        <div className='text-white'>Loading...</div>
-    ) : (
-        totalUnclaimReward ?
-            (
-                <div>
-                    <div className='text-white font-bold'>
-                        Congrats!! You've got {totalUnclaimReward} USDT to claim!!
-                    </div>
-                    <div className='px-1 py-2'>
-                        <button
-                            className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
-                            onClick={handleClaim}
-                        >
-                            Claim
-                        </button>
-                    </div>
 
-                </div>
-            ) : null
+    return (
+        isLoading ? (
+            <div className='text-white'>Loading...</div>
+        ) : (
+            totalUnclaimReward ?
+                (
+                    <div>
+                        <div className='text-white font-bold'>
+                            Congrats!! You've got {totalUnclaimReward} USDT to claim!!
+                        </div>
+                        <div className='px-1 py-2'>
+                            <button
+                                className='text-white rounded-full bg-[#2405ef] py-2 px-4 font-semibold'
+                                onClick={handleClaim}
+                            >
+                                Claim
+                            </button>
+                        </div>
+
+                    </div>
+                ) : null
+        )
     )
 }
 
