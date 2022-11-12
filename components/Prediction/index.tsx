@@ -47,8 +47,8 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         args: [false, bet ? bet * 1000000 : 1000000]
     })
 
-    const { isSuccess: longIsSuccess, isError: longIsError, write: longWrite } = useContractWrite(longConfig)
-    const { isSuccess: shortIsSuccess, isError: shortIsError, write: shortWrite} = useContractWrite(shortConfig)
+    const { isSuccess: longIsSuccess, write: longWrite } = useContractWrite(longConfig)
+    const { isSuccess: shortIsSuccess, write: shortWrite } = useContractWrite(shortConfig)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
@@ -81,7 +81,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         if (isCrypto) {
             longWrite?.()
             if (longIsSuccess) toast.success("請確認交易")
-            if (longIsError) toast.error("交易失敗")
+            else toast.error("交易失敗")
             return
         }
     };
@@ -113,7 +113,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         if (isCrypto) {
             shortWrite?.()
             if (shortIsSuccess) toast.success("請確認交易")
-            if (shortIsError) toast.error("交易失敗")
+            else toast.error("交易失敗")
             return
         }
     }
