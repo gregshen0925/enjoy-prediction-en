@@ -80,8 +80,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         }
         if (isCrypto) {
             longWrite?.()
-            if (longIsSuccess) toast.success("請確認交易")
-            if (longIsError) toast.error("交易失敗")
+            if(longIsSuccess) toast.success("請確認交易")
             return
         }
     };
@@ -113,7 +112,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         if (isCrypto) {
             shortWrite?.()
             if (shortIsSuccess) toast.success("請確認交易")
-            if (shortIsError) toast.error("交易失敗")
             return
         }
     }
