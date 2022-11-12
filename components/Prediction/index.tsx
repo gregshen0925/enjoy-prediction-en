@@ -47,8 +47,8 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         args: [false, bet ? bet * 1000000 : 1000000]
     })
 
-    const { data, isLoading, isSuccess, write: longWrite } = useContractWrite(longConfig)
-    const { write: shortWrite} = useContractWrite(shortConfig)
+    const { isSuccess: longIsSuccess, isError: longIsError, write: longWrite } = useContractWrite(longConfig)
+    const { isSuccess: shortIsSuccess, isError: shortIsError, write: shortWrite} = useContractWrite(shortConfig)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
@@ -80,7 +80,8 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         }
         if (isCrypto) {
             longWrite?.()
-            toast.success("請確認交易")
+            if (longIsSuccess) toast.success("請確認交易")
+            if (longIsError) toast.error("交易失敗")
             return
         }
     };
@@ -111,7 +112,8 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         }
         if (isCrypto) {
             shortWrite?.()
-            toast.success("請確認交易")
+            if (shortIsSuccess) toast.success("請確認交易")
+            if (shortIsError) toast.error("交易失敗")
             return
         }
     }
@@ -135,10 +137,10 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     }
     return (
         <div className=''>
-            {stakeAmount ? (<div>
-                您已預測 {(prediction == 1) ? "漲" : "跌"} {stakeAmount} USDT
-            </div>) : null}
-            <div>
+            {stakeAmount ? (<div className="text-white">
+                您已預測 {(prediction === 1) ? "漲" : "跌"} {(stakeAmount/1000000).toFixed(0)} USDT
+            </div>) : 
+            (<div>
                 <div className='flex flex-grid grid-cols-5 w-full justify-center'>
                     <button
                         type="button"
@@ -173,7 +175,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
                         className="text-black bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-red-500"
                     >明天會跌</button>
                 </div>
-            </div>
+            </div>)}
         </div>
     )
 }
