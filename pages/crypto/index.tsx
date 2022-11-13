@@ -37,6 +37,7 @@ const Crypto: NextPage = (props: Props) => {
             <div className='pb-20'>
                 <PoolInfo
                     isCrypto={true}
+                    isStock={false}
                 />
             </div>
         </div>

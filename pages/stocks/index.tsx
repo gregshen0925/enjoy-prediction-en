@@ -40,6 +40,7 @@ const Stocks: NextPage = (props: Props) => {
             <div className='relative items-center'>
                 <Precidtion
                     isStock={true}
+                    isCrypto={false}
                 />
             </div>
 
