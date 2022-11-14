@@ -112,6 +112,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             if (allowance.lt(bet*1000000)) {
                 setApproveFrom(1)
                 approveWrite?.()
+                longWrite?.()
             } else {
                 longWrite?.()
             }
@@ -148,6 +149,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             if (allowance.lt(bet*1000000)) {
                 setApproveFrom(2)
                 approveWrite?.()
+                shortWrite?.()
             } else {
                 shortWrite?.()
             }
