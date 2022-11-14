@@ -68,7 +68,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         contractInterface: UsdtABI.abi,
         functionName: 'approve',
         args: [EnJoyABI.address, constants.MaxUint256],
-        onSuccess: (s) => {
+        onSuccess: () => {
             if (approveFrom === 1) longWrite?.()
             if (approveFrom === 2) shortWrite?.()
         }
@@ -112,7 +112,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             if (allowance.lt(bet*1000000)) {
                 setApproveFrom(1)
                 approveWrite?.()
-                longWrite?.()
             } else {
                 longWrite?.()
             }
@@ -149,7 +148,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             if (allowance.lt(bet*1000000)) {
                 setApproveFrom(2)
                 approveWrite?.()
-                shortWrite?.()
             } else {
                 shortWrite?.()
             }
