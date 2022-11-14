@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
-import ContractABI from '../../EnJoyPrediction.json'
+import ContractABI from '../../artifacts/EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
 
 

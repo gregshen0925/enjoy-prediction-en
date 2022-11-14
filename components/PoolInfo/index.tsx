@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useContractRead } from 'wagmi';
-import ContractABI from '../../EnJoyPrediction.json'
+import EnJoyABI from '../../artifacts/EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
 
 type Props = {
@@ -24,7 +24,7 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
 
     useContractRead({
         addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        contractInterface: EnJoyABI.abi,
         functionName: 'getTableInfo',
         args: [timestamp],
         onSuccess(data) {

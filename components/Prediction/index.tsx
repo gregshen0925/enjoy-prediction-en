@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import { utils, constants, BigNumber } from 'ethers'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import { useContractRead } from 'wagmi'
-import ContractABI from '../../EnJoyPrediction.json'
+import EnJoyABI from "../../artifacts/EnJoyPrediction.json"
+import UsdtABI from "../../artifacts/USDT.json"
 
 interface Props {
     isStock?: Boolean
@@ -19,11 +21,15 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     // 1 means moon, 2 means dust
     const [prediction, setPrediction] = useState<number>(0)
 
+    const [allowance, setAllowance] = useState<BigNumber>(BigNumber.from(0))
+
+    const [approveFrom, setApproveFrom] = useState<number>(0)
+
     const timestamp = Math.floor(new Date().valueOf() / 1000)
 
     useContractRead({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
         functionName: 'getPlayerStakeInfo',
         args: [address, timestamp],
         onSuccess(data) {
@@ -33,22 +39,46 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         },
     })
 
+    useContractRead({
+        addressOrName: UsdtABI.address,
+        contractInterface: UsdtABI.abi,
+        functionName: 'allowance',
+        args: [address, EnJoyABI.address],
+        onSuccess(allowance) {
+            setAllowance(BigNumber.from(allowance.toString()))
+        }
+    })
+
     const { config: longConfig } = usePrepareContractWrite({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
         functionName: 'predict',
         args: [true, bet ? bet * 1000000 : 1000000]
     })
 
     const { config: shortConfig } = usePrepareContractWrite({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
         functionName: 'predict',
         args: [false, bet ? bet * 1000000 : 1000000]
     })
 
+    const {config: approveConfig } = usePrepareContractWrite({
+        addressOrName: UsdtABI.address,
+        contractInterface: UsdtABI.abi,
+        functionName: 'approve',
+        args: [EnJoyABI.address, constants.MaxUint256],
+        onSuccess: (s) => {
+            if (approveFrom === 1) longWrite?.()
+            if (approveFrom === 2) shortWrite?.()
+        }
+    })
+
     const { write: longWrite } = useContractWrite(longConfig)
     const { write: shortWrite } = useContractWrite(shortConfig)
+    const { write: approveWrite } = useContractWrite(approveConfig)
+
+    // console.log("approveFrom:", approveFrom)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setBet(e.target.valueAsNumber)
@@ -79,7 +109,13 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            longWrite?.()
+            if (allowance.lt(bet*1000000)) {
+                setApproveFrom(1)
+                approveWrite?.()
+                longWrite?.()
+            } else {
+                longWrite?.()
+            }
             toast.success("請確認交易")
             return
         }
@@ -110,7 +146,13 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             return
         }
         if (isCrypto) {
-            shortWrite?.()
+            if (allowance.lt(bet*1000000)) {
+                setApproveFrom(2)
+                approveWrite?.()
+                shortWrite?.()
+            } else {
+                shortWrite?.()
+            }
             toast.success("請確認交易")
             return
         }

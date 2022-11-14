@@ -1,0 +1,159 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "EnJoyPrediction",
+  "sourceName": "contracts/EnJoyPrediction.sol",
+  "address": "0x4078FFb52019277AA08fa83720cE3EfC38Be7327",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "usdtAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "contract AggregatorV3Interface",
+          "name": "btcAggregator",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "claim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPlayerStakeInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "stakeAmount",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint8",
+              "name": "prediction",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct EnJoyPrediction.StakeInfo",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        }
+      ],
+      "name": "getPlayerUnclaimReward",
+      "outputs": [
+        {
+          "internalType": "uint80",
+          "name": "claimableReward",
+          "type": "uint80"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTableInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "enum EnJoyPrediction.TableResult",
+              "name": "result",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint64",
+              "name": "startPrice",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint80",
+              "name": "longPool",
+              "type": "uint80"
+            },
+            {
+              "internalType": "uint80",
+              "name": "shortPool",
+              "type": "uint80"
+            },
+            {
+              "internalType": "uint24",
+              "name": "playerCount",
+              "type": "uint24"
+            }
+          ],
+          "internalType": "struct EnJoyPrediction.TableInfo",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "predictLong",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "stakeAmount",
+          "type": "uint32"
+        }
+      ],
+      "name": "predict",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "settle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
