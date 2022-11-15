@@ -21,7 +21,7 @@ const Header = (props: Props) => {
         />
         <div className="items-center justify-center md:space-x-10">
           <h1 className="text-xl text-white font-bold truncate">
-            EnJoy Prediction
+            <a href="/">EnJoy Prediction</a>
             <p className="flex">
               <ConnectButton.Custom>
                 {({ account, openAccountModal }) => {
