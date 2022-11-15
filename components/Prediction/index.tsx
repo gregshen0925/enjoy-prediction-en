@@ -1,7 +1,12 @@
 import { utils, constants, BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useAccount, useContractEvent, useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useAccount,
+  useContractEvent,
+  useContractWrite,
+  usePrepareContractWrite,
+} from "wagmi";
 import { useContractRead } from "wagmi";
 import EnJoyABI from "../../artifacts/EnJoyPrediction.json";
 import UsdtABI from "../../artifacts/USDT.json";
@@ -69,33 +74,34 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
 
   const { data: longData, write: longWrite } = useContractWrite(longConfig);
   const { data: shortData, write: shortWrite } = useContractWrite(shortConfig);
-  const { data: approveData, write: approveWrite } = useContractWrite(approveConfig);
+  const { data: approveData, write: approveWrite } =
+    useContractWrite(approveConfig);
 
   useEffect(() => {
     const updateAllowance = async () => {
       if (approveData) {
-        await approveData.wait()
-        setAllowance(constants.MaxUint256)
+        await approveData.wait();
+        setAllowance(constants.MaxUint256);
       }
-    }
-    updateAllowance()
-  }, [approveData])
+    };
+    updateAllowance();
+  }, [approveData]);
 
   useEffect(() => {
     const updatePrediction = async () => {
       if (longData) {
-        await longData.wait()
-        setPrediction(1)
-        if (bet) setStakeAmount(bet)
+        await longData.wait();
+        setPrediction(1);
+        if (bet) setStakeAmount(bet);
       }
       if (shortData) {
-        await shortData.wait()
-        setPrediction(2)
-        if (bet) setStakeAmount(bet)
+        await shortData.wait();
+        setPrediction(2);
+        if (bet) setStakeAmount(bet);
       }
-    }
-    updatePrediction()
-  }, [longData, shortData])
+    };
+    updatePrediction();
+  }, [longData, shortData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setBet(e.target.valueAsNumber);
@@ -242,7 +248,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
           <button
             type="button"
             onClick={handleApprove}
-            className="text-white bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
+            className="text-white bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
           >
             授權 USDT
           </button>
