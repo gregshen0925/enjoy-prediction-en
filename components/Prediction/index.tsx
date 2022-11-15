@@ -1,7 +1,7 @@
 import { utils, constants, BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useAccount, useContractEvent, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { useContractRead } from "wagmi";
 import EnJoyABI from "../../artifacts/EnJoyPrediction.json";
 import UsdtABI from "../../artifacts/USDT.json";
@@ -21,7 +21,6 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   // 1 means moon, 2 means dust
   const [prediction, setPrediction] = useState<number>(0);
   const [allowance, setAllowance] = useState<BigNumber>(BigNumber.from(0));
-  const [approveFrom, setApproveFrom] = useState<number>(0);
   const timestamp = Math.floor(new Date().valueOf() / 1000);
 
   useContractRead({
@@ -43,7 +42,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     args: [address, EnJoyABI.address],
     onSuccess(allowance) {
       setAllowance(BigNumber.from(allowance.toString()));
-      console.log(allowance);
+      // console.log(allowance);
     },
   });
 
@@ -66,17 +65,37 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     contractInterface: UsdtABI.abi,
     functionName: "approve",
     args: [EnJoyABI.address, constants.MaxUint256],
-    onSuccess: () => {
-      if (approveFrom === 1) longWrite?.();
-      if (approveFrom === 2) shortWrite?.();
-    },
   });
 
-  const { write: longWrite } = useContractWrite(longConfig);
-  const { write: shortWrite } = useContractWrite(shortConfig);
-  const { write: approveWrite } = useContractWrite(approveConfig);
+  const { data: longData, write: longWrite } = useContractWrite(longConfig);
+  const { data: shortData, write: shortWrite } = useContractWrite(shortConfig);
+  const { data: approveData, write: approveWrite } = useContractWrite(approveConfig);
 
-  // console.log("approveFrom:", approveFrom)
+  useEffect(() => {
+    const updateAllowance = async () => {
+      if (approveData) {
+        await approveData.wait()
+        setAllowance(constants.MaxUint256)
+      }
+    }
+    updateAllowance()
+  }, [approveData])
+
+  useEffect(() => {
+    const updatePrediction = async () => {
+      if (longData) {
+        await longData.wait()
+        setPrediction(1)
+        if (bet) setStakeAmount(bet)
+      }
+      if (shortData) {
+        await shortData.wait()
+        setPrediction(2)
+        if (bet) setStakeAmount(bet)
+      }
+    }
+    updatePrediction()
+  }, [longData, shortData])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setBet(e.target.valueAsNumber);
@@ -111,13 +130,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
       return;
     }
     if (isCrypto) {
-      if (allowance.lt(bet * 1000000)) {
-        setApproveFrom(1);
-        approveWrite?.();
-        longWrite?.();
-      } else {
-        longWrite?.();
-      }
+      longWrite?.();
       toast.success("請確認交易");
       return;
     }
@@ -148,13 +161,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
       return;
     }
     if (isCrypto) {
-      if (allowance.lt(bet * 1000000)) {
-        setApproveFrom(2);
-        approveWrite?.();
-        shortWrite?.();
-      } else {
-        shortWrite?.();
-      }
+      shortWrite?.();
       toast.success("請確認交易");
       return;
     }
@@ -179,7 +186,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   };
   return (
     <div className="">
-      {allowance ? (
+      {allowance.gte(5000000) ? (
         stakeAmount ? (
           <div className="text-white">
             您已預測 {prediction === 1 ? "漲" : "跌"}{" "}
@@ -237,7 +244,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             onClick={handleApprove}
             className="text-white bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
           >
-            Approve USDT
+            授權 USDT
           </button>
         </div>
       )}

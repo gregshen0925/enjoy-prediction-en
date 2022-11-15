@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useContractRead } from 'wagmi';
+import { useContractEvent, useContractRead } from 'wagmi';
 import EnJoyABI from '../../artifacts/EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
+import toast from 'react-hot-toast';
 
 type Props = {
     isCrypto?: Boolean
@@ -23,7 +24,7 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
     }
 
     useContractRead({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
+        addressOrName: EnJoyABI.address,
         contractInterface: EnJoyABI.abi,
         functionName: 'getTableInfo',
         args: [timestamp],
@@ -34,6 +35,22 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
             setPlayerCount(playerCount)
         },
     })
+
+    useContractEvent({
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
+        eventName: 'Predict',
+        listener(event) {
+          const [player, prediction, stakeAmount] = event;
+          // console.log(player, prediction, stakeAmount)
+          if (prediction === 1) {
+            setLongPool(longPool.add(stakeAmount))
+            setTotalPoolAmount(totalPoolAmount.add(stakeAmount))
+          }
+          if (prediction === 2)
+            setTotalPoolAmount(totalPoolAmount.add(stakeAmount))
+        },
+      })
 
     if (isCrypto) {
         const percentage = totalPoolAmount?.eq(0) ? 50 : (longPool.mul(10000).div(totalPoolAmount).toNumber() / 100)

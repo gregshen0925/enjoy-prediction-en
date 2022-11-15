@@ -1,8 +1,5 @@
 {
-  "_format": "hh-sol-artifact-1",
-  "contractName": "EnJoyPrediction",
-  "sourceName": "contracts/EnJoyPrediction.sol",
-  "address": "0x4078FFb52019277AA08fa83720cE3EfC38Be7327",
+  "address": "0x9AC1df901b65537Bc2A7dE53be698e83553c2EbA",
   "abi": [
     {
       "inputs": [
@@ -19,6 +16,50 @@
       ],
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint80",
+          "name": "reward",
+          "type": "uint80"
+        }
+      ],
+      "name": "Claim",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "prediction",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "stakeAmount",
+          "type": "uint32"
+        }
+      ],
+      "name": "Predict",
+      "type": "event"
     },
     {
       "inputs": [],
@@ -154,6 +195,304 @@
       "type": "function"
     }
   ],
-  "linkReferences": {},
-  "deployedLinkReferences": {}
+  "transactionHash": "0xf4706048cba6eeac70abc93f44c999a07000d01b58f01fe98085f87edc4d3f4e",
+  "receipt": {
+    "to": null,
+    "from": "0x4d3b9625656af699F53D364A980Ea78bb6035978",
+    "contractAddress": "0x9AC1df901b65537Bc2A7dE53be698e83553c2EbA",
+    "transactionIndex": 67,
+    "gasUsed": "1325772",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000100004000000000000000000000000000000000000000000000008000002000000000000000000000000000000000000000000000000000800000000000000000040100000000000004000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000040000000004000000000000000000001000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000100000",
+    "blockHash": "0x144bafb99f9af04649c427881cafb4a18a59b1cf75b3fce9094dfdb4634b05e4",
+    "transactionHash": "0xf4706048cba6eeac70abc93f44c999a07000d01b58f01fe98085f87edc4d3f4e",
+    "logs": [
+      {
+        "transactionIndex": 67,
+        "blockNumber": 29160943,
+        "transactionHash": "0xf4706048cba6eeac70abc93f44c999a07000d01b58f01fe98085f87edc4d3f4e",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x0000000000000000000000004d3b9625656af699f53d364a980ea78bb6035978",
+          "0x000000000000000000000000c275dc8be39f50d12f66b6a63629c39da5bae5bd"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000710ac843f51a80000000000000000000000000000000000000000000000001b96036b3ddcf405000000000000000000000000000000000000000000000ad6bfc6271334fd2aa10000000000000000000000000000000000000000000000001b8ef2beb99da25d000000000000000000000000000000000000000000000ad6bfcd37bfb93c7c49",
+        "logIndex": 338,
+        "blockHash": "0x144bafb99f9af04649c427881cafb4a18a59b1cf75b3fce9094dfdb4634b05e4"
+      }
+    ],
+    "blockNumber": 29160943,
+    "cumulativeGasUsed": "15863987",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x4Dd548eeba1812b5CB3c21e019929DE0ee80385A",
+    "0x007A22900a3B98143368Bd5906f8E17e9867581b"
+  ],
+  "numDeployments": 4,
+  "solcInputHash": "1c7fe8f5141940d5788a36ba0550ec5f",
+  "devdoc": {
+    "author": "InJoy Labs (https://injoylabs.io/)",
+    "kind": "dev",
+    "methods": {
+      "claim()": {
+        "details": "Claim reward given table IDs"
+      },
+      "constructor": {
+        "details": "Connect USDT contract and BTC oracle"
+      },
+      "getPlayerStakeInfo(address,uint256)": {
+        "details": "get current stake info of certain player"
+      },
+      "getPlayerUnclaimReward(address)": {
+        "details": "compute unclaimed reward of certain player"
+      },
+      "getTableInfo(uint256)": {
+        "details": "get current stake for long and short"
+      },
+      "predict(bool,uint32)": {
+        "details": "Predict BTC price with certain amount of USDT"
+      },
+      "settle()": {
+        "details": "Settle the result using Chainlink oracle"
+      }
+    },
+    "stateVariables": {
+      "_btcPriceFeed": {
+        "details": "Chainlink BTC price feed oracle"
+      },
+      "_stakeInfoMapOf": {
+        "details": "Player => (TableID => StakeInfo)"
+      },
+      "_tableInfoMap": {
+        "details": "TableID => TableInfo"
+      },
+      "_usdt": {
+        "details": "USDT contract"
+      }
+    },
+    "title": "A game about predicting the price of BTC",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1485,
+        "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+        "label": "_tableInfoMap",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_struct(TableInfo)1457_storage)"
+      },
+      {
+        "astId": 1491,
+        "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+        "label": "_stakeInfoMapOf",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_struct(U2UMap)2731_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_bytes32)dyn_storage": {
+        "base": "t_bytes32",
+        "encoding": "dynamic_array",
+        "label": "bytes32[]",
+        "numberOfBytes": "32"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_enum(TableResult)1445": {
+        "encoding": "inplace",
+        "label": "enum EnJoyPrediction.TableResult",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(U2UMap)2731_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct EnumerableMap.U2UMap)",
+        "numberOfBytes": "32",
+        "value": "t_struct(U2UMap)2731_storage"
+      },
+      "t_mapping(t_bytes32,t_bytes32)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => bytes32)",
+        "numberOfBytes": "32",
+        "value": "t_bytes32"
+      },
+      "t_mapping(t_bytes32,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_uint256,t_struct(TableInfo)1457_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct EnJoyPrediction.TableInfo)",
+        "numberOfBytes": "32",
+        "value": "t_struct(TableInfo)1457_storage"
+      },
+      "t_struct(Bytes32Set)1018_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Bytes32Set",
+        "members": [
+          {
+            "astId": 1017,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_inner",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Set)824_storage"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(Map)2501_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableMap.Map",
+        "members": [
+          {
+            "astId": 2496,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_keys",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Bytes32Set)1018_storage"
+          },
+          {
+            "astId": 2500,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_values",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_bytes32,t_bytes32)"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(Set)824_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Set",
+        "members": [
+          {
+            "astId": 819,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_values",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_array(t_bytes32)dyn_storage"
+          },
+          {
+            "astId": 823,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_indexes",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_bytes32,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(TableInfo)1457_storage": {
+        "encoding": "inplace",
+        "label": "struct EnJoyPrediction.TableInfo",
+        "members": [
+          {
+            "astId": 1448,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "result",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_enum(TableResult)1445"
+          },
+          {
+            "astId": 1450,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "startPrice",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_uint64"
+          },
+          {
+            "astId": 1452,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "longPool",
+            "offset": 9,
+            "slot": "0",
+            "type": "t_uint80"
+          },
+          {
+            "astId": 1454,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "shortPool",
+            "offset": 19,
+            "slot": "0",
+            "type": "t_uint80"
+          },
+          {
+            "astId": 1456,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "playerCount",
+            "offset": 29,
+            "slot": "0",
+            "type": "t_uint24"
+          }
+        ],
+        "numberOfBytes": "32"
+      },
+      "t_struct(U2UMap)2731_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableMap.U2UMap",
+        "members": [
+          {
+            "astId": 2730,
+            "contract": "contracts/EnJoyPrediction.sol:EnJoyPrediction",
+            "label": "_inner",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Map)2501_storage"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_uint24": {
+        "encoding": "inplace",
+        "label": "uint24",
+        "numberOfBytes": "3"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint64": {
+        "encoding": "inplace",
+        "label": "uint64",
+        "numberOfBytes": "8"
+      },
+      "t_uint80": {
+        "encoding": "inplace",
+        "label": "uint80",
+        "numberOfBytes": "10"
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
-import ContractABI from '../../artifacts/EnJoyPrediction.json'
+import EnJoyABI from '../../artifacts/EnJoyPrediction.json'
 import { BigNumber, utils } from 'ethers'
 
 
@@ -14,8 +14,8 @@ const Claim = (props: Props) => {
     const { address } = useAccount()
 
     const { isFetching } = useContractRead({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
         functionName: 'getPlayerUnclaimReward',
         args: [address],
         onSuccess(claimableReward) {
@@ -24,8 +24,8 @@ const Claim = (props: Props) => {
     })
 
     const { config } = usePrepareContractWrite({
-        addressOrName: '0x4078FFb52019277AA08fa83720cE3EfC38Be7327',
-        contractInterface: ContractABI.abi,
+        addressOrName: EnJoyABI.address,
+        contractInterface: EnJoyABI.abi,
         functionName: 'claim',
     })
 
