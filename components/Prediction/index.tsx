@@ -26,7 +26,8 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   // 1 means moon, 2 means dust
   const [prediction, setPrediction] = useState<number>(0);
   const [allowance, setAllowance] = useState<BigNumber>(BigNumber.from(0));
-  const [loading, setLoading] = useState<boolean>(false);
+  const [approveLoading, setApproveLoading] = useState<boolean>(false);
+  const [transactionLoading, setTransactionLoading] = useState<boolean>(false);
   const timestamp = Math.floor(new Date().valueOf() / 1000);
 
   useContractRead({
@@ -83,6 +84,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
       if (approveData) {
         await approveData.wait();
         setAllowance(constants.MaxUint256);
+        setApproveLoading(false);
       }
     };
     updateAllowance();
@@ -100,6 +102,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
         setPrediction(2);
         if (bet) setStakeAmount(bet);
       }
+      setTransactionLoading(false);
     };
     updatePrediction();
   }, [longData, shortData]);
@@ -109,26 +112,31 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   };
 
   const handleApprove = async () => {
-    setLoading(true);
+    setApproveLoading(true);
     approveWrite?.();
   };
 
   const handleMoon = async () => {
+    setTransactionLoading(true);
     if (!address) {
       toast.error("請先連接錢包");
+      setTransactionLoading(false);
       return;
     }
     if (!bet) {
       toast.error("請輸入數字");
+      setTransactionLoading(false);
       return;
     }
     if (bet > 5) {
       toast.error("最高5美元");
+      setTransactionLoading(false);
       setBet(NaN);
       return;
     }
     if (bet < 1) {
       toast.error("最低1美元");
+      setTransactionLoading(false);
       setBet(NaN);
       return;
     }
@@ -145,21 +153,26 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   };
 
   const handleDust = () => {
+    setTransactionLoading(true);
     if (!address) {
       toast.error("請先連接錢包");
+      setTransactionLoading(false);
       return;
     }
     if (!bet) {
       toast.error("請輸入數字");
+      setTransactionLoading(false);
       return;
     }
     if (bet > 5) {
       toast.error("最高5美元");
+      setTransactionLoading(false);
       setBet(NaN);
       return;
     }
     if (bet < 1) {
       toast.error("最低1美元");
+      setTransactionLoading(false);
       setBet(NaN);
       return;
     }
@@ -196,9 +209,18 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
     <div className="">
       {allowance.gte(5000000) ? (
         stakeAmount ? (
-          <div className="text-white">
-            您已預測 {prediction === 1 ? "漲" : "跌"}{" "}
+          <div className="text-white font-bold pb-6">
+            您已預測
+            {prediction === 1 ? (
+              <span className="text-[#6de06d]">漲</span>
+            ) : (
+              <span className="text-[#df5652]">跌</span>
+            )}{" "}
             {(stakeAmount / 1000000).toFixed(0)} USDT
+          </div>
+        ) : transactionLoading ? (
+          <div className="text-white pb-5 font-bold animate-pulse">
+            交易處理中...
           </div>
         ) : (
           <div>
@@ -253,7 +275,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             disabled={!address}
             className="text-white bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-blue-600 cursor-pointer disabled:cursor-not-allowed"
           >
-            {loading ? (
+            {approveLoading ? (
               <div className="animate-pulse">Loading...</div>
             ) : (
               <div>授權 USDT</div>
