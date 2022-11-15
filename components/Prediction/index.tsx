@@ -26,6 +26,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   // 1 means moon, 2 means dust
   const [prediction, setPrediction] = useState<number>(0);
   const [allowance, setAllowance] = useState<BigNumber>(BigNumber.from(0));
+  const [loading, setLoading] = useState<boolean>(false);
   const timestamp = Math.floor(new Date().valueOf() / 1000);
 
   useContractRead({
@@ -108,6 +109,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   };
 
   const handleApprove = async () => {
+    setLoading(true);
     approveWrite?.();
   };
 
@@ -243,14 +245,19 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
           </div>
         )
       ) : (
-        <div className="flex justify-center items-center py-3">
+        <div className="flex justify-center items-center pb-2">
           <div>&nbsp;&nbsp;</div>
           <button
             type="button"
             onClick={handleApprove}
-            className="text-white bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
+            disabled={!address}
+            className="text-white bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-blue-600 cursor-pointer disabled:cursor-not-allowed"
           >
-            授權 USDT
+            {loading ? (
+              <div className="animate-pulse">Loading...</div>
+            ) : (
+              <div>授權 USDT</div>
+            )}
           </button>
         </div>
       )}
