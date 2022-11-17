@@ -46,7 +46,7 @@ const Countdown = ({ settleTime }: Props) => {
         <div className="text-white font-bold">
           Next draw {settleTimeDate.getFullYear()}/
           {settleTimeDate.getMonth() + 1}/{settleTimeDate.getDate()}{" "}
-          {settleTimeDate.getHours()}:{settleTimeDate.getMinutes()}
+          {settleTimeDate.getHours()}:{settleTimeDate.getMinutes()<10?("0"+settleTimeDate.getMinutes()):settleTimeDate.getMinutes()}
         </div>
         <section className="py-2">
           <div

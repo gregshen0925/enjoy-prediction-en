@@ -17,13 +17,14 @@ const Home: NextPage<Props> = (props: Props) => {
       </p>
       <div className="text-white font-semibold px-10 text-left space-y-2 max-w-3xl py-5">
         <div>1. Login using web3 wallet.</div>
-        <div>2. Predict if the price goes up or down tomorrow.</div>
-        <div>3. People who win will divide the opposite side's pool.</div>
+        <div>2. Stake 0~5 USDT in the pool to predict.</div>
+        <div>3. Predict if the price goes up or down tomorrow.</div>
+        <div>4. People who win will divide the opponent side's pool.</div>
         <div>
-          4. There will be a settle chance who send transaction to execute the
-          divide action. The settler can get 1% of the pool.
+          5. There will be a settle chance. The person who send transaction to execute the
+          divide action can get 1% prize of the pool.
         </div>
-        <div>5. Players can claim their rewards anytime they want.</div>
+        <div>6. Players can claim their rewards anytime they want.</div>
       </div>
       <div>This is black word</div>
     </div>
