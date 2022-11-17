@@ -24,7 +24,7 @@ const Stocks: NextPage = (props: Props) => {
   return (
     <div className="grid text-center items-center">
       <h3 className="pt-5 uppercase text-[#447de6] text-2xl">
-        &nbsp;此頁還在討論怎麼做，感謝夏令時間ˊˋ
+        &nbsp;This page is still in development due to Daylight saving time
       </h3>
       <div className="relative pt-5 md:pt-10">
         <Countdown settleTime={today2230} />
@@ -32,10 +32,10 @@ const Stocks: NextPage = (props: Props) => {
       <div className="relative py-5 md:py-10">
         <SymbolOverviewNoSSR symbol="NDX" />
       </div>
-
+      {/* 
       <div className="relative items-center">
         <Precidtion isStock={true} isCrypto={false} />
-      </div>
+      </div> */}
     </div>
   );
 };

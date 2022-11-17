@@ -119,35 +119,35 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   const handleMoon = async () => {
     setTransactionLoading(true);
     if (!address) {
-      toast.error("請先連接錢包");
+      toast.error("Please Connect Wallet");
       setTransactionLoading(false);
       return;
     }
     if (!bet) {
-      toast.error("請輸入數字");
+      toast.error("Enter a number");
       setTransactionLoading(false);
       return;
     }
     if (bet > 5) {
-      toast.error("最高5美元");
+      toast.error("Max 5 USDT");
       setTransactionLoading(false);
       setBet(NaN);
       return;
     }
-    if (bet < 1) {
-      toast.error("最低1美元");
+    if (bet <= 0) {
+      toast.error("Higher");
       setTransactionLoading(false);
       setBet(NaN);
       return;
     }
     if (isStock) {
       // interact with stock pool
-      toast.success("請確認交易");
+      toast.success("Confirm Transaction");
       return;
     }
     if (isCrypto) {
       longWrite?.();
-      toast.success("請確認交易");
+      toast.success("Confirm Transaction");
       return;
     }
   };
@@ -155,35 +155,35 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
   const handleDust = () => {
     setTransactionLoading(true);
     if (!address) {
-      toast.error("請先連接錢包");
+      toast.error("Please Connect Wallet");
       setTransactionLoading(false);
       return;
     }
     if (!bet) {
-      toast.error("請輸入數字");
+      toast.error("Enter a number");
       setTransactionLoading(false);
       return;
     }
     if (bet > 5) {
-      toast.error("最高5美元");
+      toast.error("Max 5 USDT");
       setTransactionLoading(false);
       setBet(NaN);
       return;
     }
-    if (bet < 1) {
-      toast.error("最低1美元");
+    if (bet <= 0) {
+      toast.error("Higher");
       setTransactionLoading(false);
       setBet(NaN);
       return;
     }
     if (isStock) {
       // interact with stock pool
-      toast.success("請確認交易");
+      toast.success("Confirm Transaction");
       return;
     }
     if (isCrypto) {
       shortWrite?.();
-      toast.success("請確認交易");
+      toast.success("Confirm Transaction");
       return;
     }
   };
@@ -210,17 +210,17 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
       {allowance.gte(5000000) ? (
         stakeAmount ? (
           <div className="text-white font-bold pb-6">
-            您已預測
+            You've Predicted
             {prediction === 1 ? (
-              <span className="text-[#6de06d]">漲</span>
+              <span className="text-[#6de06d]">Long</span>
             ) : (
-              <span className="text-[#df5652]">跌</span>
+              <span className="text-[#df5652]">Short</span>
             )}{" "}
             {(stakeAmount / 1000000).toFixed(0)} USDT
           </div>
         ) : transactionLoading ? (
           <div className="text-white pb-5 font-bold animate-pulse">
-            交易處理中...
+            Transaction Processing...
           </div>
         ) : (
           <div>
@@ -236,7 +236,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
                 type="number"
                 onChange={handleChange}
                 value={bet}
-                placeholder="投入USDT數量(0~5)"
+                placeholder="USDT Amount(0~5)"
                 className="col-span-3 justify-center bg-gray-50 border text-center border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               />
               <button
@@ -254,14 +254,14 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
                 onClick={handleMoon}
                 className="text-white bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-green-400"
               >
-                明天會漲
+                Moon
               </button>
               <button
                 type="button"
                 onClick={handleDust}
                 className="text-black bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hover:bg-red-500"
               >
-                明天會跌
+                Dust
               </button>
             </div>
           </div>
@@ -278,7 +278,7 @@ const Precidtion = ({ isStock, isCrypto }: Props) => {
             {approveLoading ? (
               <div className="animate-pulse">Loading...</div>
             ) : (
-              <div>授權 USDT</div>
+              <div>Approve USDT</div>
             )}
           </button>
         </div>

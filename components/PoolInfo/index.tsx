@@ -79,10 +79,10 @@ const PoolInfo = ({ isCrypto, isStock }: Props) => {
         </div>
         <div className="pt-3">
           <div className="text-white font-semibold">
-            已有{playerCount}人預測
+            {playerCount} players participated
           </div>
           <div className="text-white font-semibold">
-            當前總金額為 {formatUSDT(totalPoolAmount)} USDT
+            {formatUSDT(totalPoolAmount)} USDT in pool
           </div>
         </div>
       </div>

@@ -12,22 +12,20 @@ const Home: NextPage<Props> = (props: Props) => {
         <title>EnJoy Prediction</title>
       </Head>
       <Claim />
-      <div className="pt-10 flex text-white justify-center text-xl md:text-3xl">
-        預測明天NASDAQ或BTC明天是漲或跌的小遊戲
-      </div>
-      <div className="text-[#43c08c] font-semibold py-2 px-10 text-left space-y-2 max-w-3xl">
+      <p className="flex justify-center px-5 text-3xl text-white font-bold text-transparent py-10 bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        A Dapp for predicting tomorrow's price
+      </p>
+      <div className="text-white font-semibold px-10 text-left space-y-2 max-w-3xl py-5">
+        <div>1. Login using web3 wallet.</div>
+        <div>2. Predict if the price goes up or down tomorrow.</div>
+        <div>3. People who win will divide the opposite side's pool.</div>
         <div>
-          1.
-          最低1USDT、最高5USDT，贏的一邊獲得另一邊的籌碼，使用前請先學習如何使用區塊鏈錢包並切換到Polygon鏈！
+          4. There will be a settle chance who send transaction to execute the
+          divide action. The settler can get 1% of the pool.
         </div>
-        <div>
-          2.
-          此App初衷是讓大家在體驗刺激小遊戲的同時，可以學習看K線、操作錢包，後續也會放上創建錢包、增加Polygon鏈的教學
-        </div>
-        <div>3. 未來可至Rank頁面查看最強預測專家</div>
-        <div>4. 將來會將用戶資料結合SBT並開發抽卡交友功能</div>
+        <div>5. Players can claim their rewards anytime they want.</div>
       </div>
-      <div>黑色的字，想不到吧</div>
+      <div>This is black word</div>
     </div>
   );
 };

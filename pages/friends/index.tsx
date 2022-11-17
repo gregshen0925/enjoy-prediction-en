@@ -7,14 +7,20 @@ type Props = {};
 const Friends: NextPage = (props: Props) => {
   return (
     <div className="pt-10">
+      <p className="flex justify-center px-5 text-3xl text-white font-bold text-transparent py-10 bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+        Milestone
+      </p>
       <div className="text-white font-bold max-w-xl">
-        之前EthOnline Hackathon有投稿一個 Web 交友 App，結合 DID, Soulbound
-        Token, Tokenized Relationship等等概念，
-        得獎後有獲得IPFS團隊的資源，我們想把這個功能應用在 EnJoy Prediction
-        上，增添更多樂趣
+        We will enable users to mint a SBT to represent themselves. And users
+        can meet one user per day. They will be able to chat with others if they
+        like each other.
       </div>
       <div className="text-white font-bold max-w-xl py-5">
-        Btw，如果有興趣看我們之前區塊鏈黑客松交友軟體的嘗試，以下是連結，（3card還可以看到抽到的人錢包裡token總資產折合美元總值
+        We've developed this function in previous hackathons. You can also see
+        how much money others have in their wallet.
+      </div>
+      <div className="text-white font-bold max-w-xl py-5 text-center">
+        Links are below
       </div>
       <div className="flex justify-center">
         <Link href="https://ethglobal.com/showcase/tind3r-i7rtt">
