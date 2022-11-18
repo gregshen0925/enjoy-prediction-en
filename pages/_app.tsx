@@ -1,33 +1,34 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
 import {
-  getDefaultWallets, RainbowKitProvider, midnightTheme
-} from '@rainbow-me/rainbowkit';
+  getDefaultWallets,
+  RainbowKitProvider,
+  midnightTheme,
+} from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
-import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
-import Layout from '../components/Layout';
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+import Layout from "../components/Layout";
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, chain.polygon],
+  [chain.polygonMumbai],
   [
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY }),
-    publicProvider()
+    publicProvider(),
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'NCKU EnJoy',
-  chains
+  appName: "NCKU EnJoy",
+  chains,
 });
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
-  provider
-})
-
+  provider,
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -38,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
       </RainbowKitProvider>
     </WagmiConfig>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
