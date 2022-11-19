@@ -39,7 +39,7 @@ const NavigationTab = (props: Props) => {
 
     return (
         <div className="bg-gray-200 max-h-[4.4rem] px-6 rounded-t-xl">
-            <ul className="flex relative">
+            <ul className="flex">
                 <span
                     className={`bg-blue-500 duration-200 ${Menus[isActive].dis} border-4 border-black h-16 w-16 absolute -top-5 rounded-full`}
                 >

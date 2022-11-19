@@ -12,7 +12,7 @@ const Header = (props: Props) => {
   });
 
   return (
-    <header className="flex justify-between space-x-10 items-center text-white pt-8 px-2">
+    <header className="flex justify-between space-x-10 items-center text-white pt-2 sm:pt-8 px-2">
       <div className="flex items-center space-x-2">
         <img
           className="rounded-full h-20 w-20 p-3"

@@ -5,7 +5,7 @@ type Props = {}
 
 const Loading = (props: Props) => {
     return (
-        <div className='bg-[#000000] h-screen flex flex-col items-center justify-center'>
+        <div className='bg-[#000000] flex flex-col items-center justify-center'>
             <div className='flex items-center space-x-2 mb-10'>
                 <img
                     className='rounded-full h-20 w-20'
