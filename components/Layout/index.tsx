@@ -41,7 +41,7 @@ const Layout: FC<Props> = ({ children }) => {
                     <Header />
                     {children}
                 </div>
-                <div className='sticky bottom-0 items-center justify-center z-50'>
+                <div className='sticky bottom-0 items-center justify-center z-50 flex'>
                     <NavigationTab />
                 </div>
             </Suspense>
